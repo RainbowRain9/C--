@@ -1,5 +1,5 @@
 // Source : https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/
-// Date   : 2024-11-25
+// Date   : 2024-11-27
 /*
  * @lc app=leetcode.cn id=26 lang=cpp
  * @lcpr version=20003
@@ -31,11 +31,13 @@ class Solution
 public:
     int removeDuplicates(vector<int> &nums)
     {
-        if (nums.empty()) return 0;
+        if (nums.empty())
+            return 0;
+        int n = nums.size();
         int k = 1;
-        for (int i = 1; i < nums.size(); i++)
+        for (int i = 1; i < n; i++)
         {
-            if (nums[i] != nums[k - 1])
+            if (nums[i] != nums[i - 1])
             {
                 nums[k++] = nums[i];
             }
