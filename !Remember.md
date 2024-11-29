@@ -192,6 +192,240 @@ condition ? expression1 : expression2 // 三元运算符
   > - `int index = s.find('a', 5);` //从下标5开始，寻找字符'a'第一次出现的下标
   >
 
+### 链表
+
+#### 链表的虚拟头节点
+
+- `ListNode dummy(0, head);`
+- 使用 `dummy` 节点来简化链表操作，避免对头节点进行特殊处理
+
+#### 链表的遍历
+
+- `while (p & p->next)`
+  - 使用 `p` 指针遍历链表，`p` 初始化为 `dummy` 节点，`p->next` 为链表的实际头节点
+
+#### 链表的交换
+
+```cpp
+// 保存节点
+p1 = p->next; // p1是p的next
+p2 = p1->next; // p2是p1的next
+p3 = p2->next; // p3是p2的next
+
+// dummy -> 1 -> 2 -> 3 -> 4
+//   ↑      ↑    ↑    ↑
+// dummy    p1   p2   p3
+
+// 改变指向
+p->next = p2; // p的next指向p2
+p1->next = p3; // p1的next指向p3
+p2->next = p1; // p2的next指向p1
+
+// dummy -> 2 -> 1 -> 3 -> 4
+//   ↑      ↑    ↑    ↑
+// dummy    p2   p1   p3
+```
+
+#### 链表的删除
+
+- `p->next = p->next->next;`
+
+#### 链表的插入
+
+- `p->next = new ListNode(val);`
+
+#### 链表的遍历
+
+- `while (p != NULL)`
+
+### 二叉树
+
+#### 二叉树节点的结构
+
+```cpp  
+struct TreeNode
+{
+    auto data;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(auto x) : data(x), left(NULL), right(NULL) {}
+};
+```
+
+#### 二叉树的创建
+
+- 递归创建二叉树
+
+```cpp
+TreeNode* createTree() {
+    auto val;
+    cin >> val;
+    
+    // 基本情况:遇到'#'返回空节点 
+    if (val == '#') {
+        return NULL;
+    }
+    
+    // 创建当前节点
+    TreeNode* root = new TreeNode(val);
+    
+    // 递归创建左子树
+    root->left = createTree();
+    
+    // 递归创建右子树
+    root->right = createTree();
+    
+    return root;
+}
+```
+
+- 非递归创建二叉树
+
+```cpp
+TreeNode* createTree() {
+    int n;
+    cin >> n;  // 输入节点个数
+    if (n <= 0) return NULL;
+    
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];  // 输入n个数据
+    }
+    
+    TreeNode* root = new TreeNode(nums[0]);  // 创建根节点
+    for (int i = 1; i < n; i++) {
+        insert(root, nums[i]);  // 依次插入其他节点
+    }
+    return root;
+}
+
+```
+
+#### 二叉树的插入
+
+- 按数字大小插入二叉树
+
+```cpp
+TreeNode *insert(TreeNode *root, int val) {
+    if (!root)  // 如果当前位置为空,创建新节点
+        return new TreeNode(val);
+        
+    if (val < root->data)  // 小于当前节点值,往左子树插入
+        root->left = insert(root->left, val);
+    else                   // 大于等于当前节点值,往右子树插入
+        root->right = insert(root->right, val);
+        
+    return root;
+}
+```
+
+#### 二叉树的查找
+
+- 递归查找二叉树
+
+```cpp
+TreeNode* search(TreeNode* root, int val) {
+    if (!root || root->data == val) return root;
+    if (val < root->data) return search(root->left, val);
+    return search(root->right, val);
+}
+```
+
+- 非递归查找二叉树
+
+```cpp
+TreeNode* search(TreeNode* root, int val) {
+    while (root && root->data != val) {
+        root = val < root->data ? root->left : root->right;
+    }
+    return root;
+}
+```
+
+#### 二叉树的删除
+
+- 递归删除二叉树
+
+```cpp
+TreeNode* deleteNode(TreeNode* root, int val) {
+    if (!root) return nullptr;
+    
+    // 查找要删除的节点
+    if (val < root->data)
+        root->left = deleteNode(root->left, val);
+    else if (val > root->data) 
+        root->right = deleteNode(root->right, val);
+    else {  // 找到要删除的节点
+        // 情况1: 叶子节点
+        if (!root->left && !root->right) {
+            delete root;
+            return nullptr;
+        }
+        // 情况2: 只有一个子节点
+        else if (!root->left) {
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if (!root->right) {
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+        }
+        // 情况3: 有两个子节点
+        else {
+            // 找到右子树的最小值节点
+            TreeNode* temp = root->right;
+            while (temp->left)
+                temp = temp->left;
+            // 用右子树最小值替换当前节点
+            root->data = temp->data;
+            // 删除右子树最小值节点
+            root->right = deleteNode(root->right, temp->data);
+        }
+    }
+    return root;
+}
+
+```
+
+#### 二叉树的遍历
+
+- 前序遍历
+
+```cpp
+void preOrder(TreeNode* root) {
+    if (root == NULL) return;
+    cout << root->data << " ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
+```
+
+- 中序遍历
+
+```cpp  
+void inOrder(TreeNode* root)
+{
+    if (root == NULL) return;
+    inOrder(root->left);
+    cout << root->data << " ";
+    inOrder(root->right);
+}
+```
+
+- 后序遍历
+
+```cpp
+void postOrder(TreeNode* root)
+{
+    if (root == NULL) return;
+    postOrder(root->left);
+    postOrder(root->right);
+    cout << root->data << " ";
+}
+```
+
 ## 算法
 
 ### 辗转相除法
@@ -300,9 +534,59 @@ swap(a, b); // 交换a和b的值
 f <= 1e-6 // f == 0;
 ```
 
+### 字母异位词
+
+#### 字母异位词的判断
+
+- 要点  
+  - 使用 `vector<int> cnt(26)` 来存储每个字母出现的次数
+  - 遍历字符串 `s` 和 `t`，将每个字母出现的次数存储在 `cnt` 中
+  - 最后遍历 `cnt`，如果每个字母出现的次数都为0，则 `s` 和 `t` 是字母异位词
+
+- 模板
+
+```cpp
+bool isAnagram(string s, string t) {
+    if (t.size() != s.size()) return false;
+    vector<int> cnt(26);
+    for (auto c : s) cnt[c - 'a']++;
+    for (auto c : t) cnt[c - 'a']--;
+    for (int i = 0; i < 26; i++) if (cnt[i] != 0) return false;
+    return true;
+}
+```
+- 例题
+  - [242-有效的字母异位词](./算法训练/LeetCode/All/242-有效的字母异位词.cpp)
+
+#### 字母异位词的分组
+
+- 要点
+  - 使用 `unordered_map<string, vector<string>> mp` 来存储每个字母异位词
+  - 遍历字符串数组 `strs`，将每个字符串排序后作为键值存储在 `mp` 中
+  - 最后遍历 `mp`，将每个键值对的值存储在结果数组中
+
+- 模板
+
+```cpp
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    unordered_map<string, vector<string>> mp;
+    for (string& str : strs) {
+        string key = str;
+        sort(key.begin(), key.end());
+        mp[key].push_back(str);
+    }
+    vector<vector<string>> ans;
+    for (auto& [_, group] : mp) ans.push_back(group);
+    return ans;
+}
+```
+
+- 例题
+  - [49-字母异位词分组](./算法训练/LeetCode/All/49-字母异位词分组.cpp)
+
 ### 滑动窗口
 
-#### 定长滑动窗口
+#### 1. 定长滑动窗口
 
 - 定长滑动窗口的模板
 
@@ -328,9 +612,9 @@ for (int i = 0; i < n; i++) // n是数组长度, k是窗口长度
   - [643-子数组最大平均数I](./算法训练/LeetCode/灵茶山艾府/01-滑动窗口与双指针/01-定长滑动窗口/643-子数组最大平均数I.cpp)
   - [1052-爱生气的书店老板](./算法训练/LeetCode/灵茶山艾府/01-滑动窗口与双指针/01-定长滑动窗口/1052-爱生气的书店老板.cpp)
 
-#### 不定长滑动窗口
+#### 2. 不定长滑动窗口
 
-##### 求最长或最大
+##### 2.1 求最长或最大
 
 - 要点
   - 求最长或最大，一般使用 `unordered_map` 或 `unordered_set` 来存储窗口内元素
@@ -341,6 +625,26 @@ for (int i = 0; i < n; i++) // n是数组长度, k是窗口长度
 - 模板
 
 ```cpp
+int left = 0, right = 0;
+int maxLen = 0;
+unordered_map<char, int> window;
+
+while (right < s.size()) {
+    // 扩大窗口
+    char c = s[right];
+    right++;
+    window[c]++;
+    
+    // 缩小窗口
+    while (window[c] > 1) { // 根据题目要求调整条件
+        char d = s[left];
+        left++;
+        window[d]--;
+    }
+    
+    // 更新答案
+    maxLen = max(maxLen, right - left);
+}
 
 ```
 

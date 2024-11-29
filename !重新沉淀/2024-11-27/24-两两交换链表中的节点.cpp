@@ -45,19 +45,15 @@ public:
         ListNode *p = &dummy;
         ListNode *p1 = head;
 
-        while (p1 && p1->next)
+        while (p1 & p1->next)
         {
-            ListNode *p2 = p1->next;
-            ListNode *p3 = p2->next;
+            ListNode p2 = p1->next;
+            ListNode p3 = p2->next;
 
             p->next = p2;
             p1->next = p3;
             p2->next = p1;
-
-            p = p1;
-            p1 = p3;
         }
-        return dummy.next;
     }
 };
 // @lc code=end

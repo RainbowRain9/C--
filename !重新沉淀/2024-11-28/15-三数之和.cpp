@@ -1,5 +1,5 @@
 // Source : https://leetcode.cn/problems/3sum/description/
-// Date   : 2024-11-22
+// Date   : 2024-11-28
 /*
  * @lc app=leetcode.cn id=15 lang=cpp
  * @lcpr version=20003
@@ -32,8 +32,8 @@ public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
         int n = nums.size();
-        sort(nums.begin(), nums.end());
         vector<vector<int>> ans;
+        sort(nums.begin(), nums.end());
         for (int i = 0; i < n - 2; i++)
         {
             int x = nums[i];

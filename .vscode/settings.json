@@ -73,6 +73,7 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
