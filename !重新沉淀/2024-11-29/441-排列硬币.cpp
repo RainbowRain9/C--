@@ -1,10 +1,10 @@
-// Source : https://leetcode.cn/problems/trapping-rain-water/description/
-// Date   : 2024-11-23
+// Source : https://leetcode.cn/problems/arranging-coins/description/
+// Date   : 2024-11-29
 /*
- * @lc app=leetcode.cn id=42 lang=cpp
+ * @lc app=leetcode.cn id=441 lang=cpp
  * @lcpr version=20003
  *
- * [42] 接雨水
+ * [441] 排列硬币
  */
 
 // @lcpr-template-start
@@ -29,37 +29,34 @@ using namespace std;
 class Solution
 {
 public:
-    int trap(vector<int> &height)
+    int arrangeCoins(int n)
     {
-        int n = height.size();
-        int pre_max = 0, suf_max = 0;
-        int left = 0, right = n - 1;
-        int ans = 0;
+        long long left = 1, right = n;
         while (left < right)
         {
-            pre_max = max(pre_max, height[left]);
-            suf_max = max(suf_max, height[right]);
-            if (pre_max < suf_max)
+            long long mid = (right + left + 1) / 2;
+            long long ans = (1 + mid) * mid / 2;
+            if (n >= ans)
             {
-                ans += pre_max - height[left++];
+                left = mid;
             }
             else
             {
-                ans += suf_max - height[right--];
+                right = mid - 1;
             }
         }
-        return ans;
+        return left;
     }
 };
 // @lc code=end
 
 /*
 // @lcpr case=start
-// [0,1,0,2,1,0,1,3,2,1,2,1]\n
+// 5\n
 // @lcpr case=end
 
 // @lcpr case=start
-// [4,2,0,3,2,5]\n
+// 8\n
 // @lcpr case=end
 
  */

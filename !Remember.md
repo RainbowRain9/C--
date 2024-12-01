@@ -238,6 +238,71 @@ p2->next = p1; // p2的next指向p1
 
 - `while (p != NULL)`
 
+### 栈
+
+#### 模板
+
+- STL 栈
+
+```cpp
+stack<int> stk;
+stk.push(1); // 压入栈顶元素
+stk.pop(); // 弹出栈顶元素
+stk.top(); // 返回栈顶元素
+stk.empty(); // 判断栈是否为空
+stk.size(); // 返回栈的大小
+```
+
+- vector or string 栈
+
+```cpp
+vector<int> stk;
+// string stk;
+stk.push_back(1); // 压入栈顶元素   
+stk.pop_back(); // 弹出栈顶元素
+stk.back(); // 返回栈顶元素
+stk.empty(); // 判断栈是否为空
+stk.size(); // 返回栈的大小
+```
+
+#### 注意事项
+
+1. 操作前必须判断栈是否为空
+
+```cpp
+if (!stk.empty()) {
+    stk.pop();
+}
+```
+
+2. 清空栈的两种方法
+
+```cpp
+while (!stk.empty()) {
+    stk.pop();
+}
+
+// 或者
+stk.clear();
+```
+
+3. 访问栈顶元素前检查
+
+```cpp
+if (!stk.empty()) {
+    int top = stk.top();  // 安全的访问栈顶
+}
+```
+
+4. 遍历
+
+```cpp
+while (!stk.empty()) {
+    int top = stk.top();
+    stk.pop();
+}
+```
+
 ### 二叉树
 
 #### 二叉树节点的结构
@@ -534,6 +599,51 @@ swap(a, b); // 交换a和b的值
 f <= 1e-6 // f == 0;
 ```
 
+### 快速幂
+
+- 用法
+  - 快速幂可以用来计算一个数的幂，时间复杂度为O(log n)，比直接计算O(n)要快得多
+  
+- 要点
+  - 快速幂的递归和迭代实现
+  - 快速幂的取模实现
+
+- 模板
+
+```cpp
+// 递归快速幂
+long long qpow(long long a, long long n) {
+    if (n == 0) return 1;
+    long long ans = qpow(a, n / 2); // 递归计算a的n/2次幂
+    ans *= ans;
+    if (n & 1) ans *= a; // 如果n是奇数，ans乘以a
+    return ans;
+}
+
+// 迭代快速幂
+long long qpow(long long a, long long n) {
+    long long ans = 1;
+    while (n) {
+        if (n & 1) ans *= a; // 如果n是奇数，ans乘以a
+        a *= a;              // 平方
+        n >>= 1;             // 右移一位，相当于除以2
+    }
+    return ans;
+}
+
+// 取模快速幂
+long long qpow(long long a, long long n, long long mod) {
+    long long ans = 1;
+    while (n) {
+        if (n & 1) ans = ans * a % mod; // 如果n是奇数，ans乘以a
+        a = a * a % mod;                // 平方
+        n >>= 1;                       // 右移一位，相当于除以2
+    }
+    return ans;
+}
+
+```
+
 ### 字母异位词
 
 #### 字母异位词的判断
@@ -555,6 +665,7 @@ bool isAnagram(string s, string t) {
     return true;
 }
 ```
+
 - 例题
   - [242-有效的字母异位词](./算法训练/LeetCode/All/242-有效的字母异位词.cpp)
 
@@ -583,6 +694,29 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 
 - 例题
   - [49-字母异位词分组](./算法训练/LeetCode/All/49-字母异位词分组.cpp)
+
+### 栈
+
+#### 字符串处理
+
+- 模板
+
+```cpp
+string removeDuplicates(string s) {
+    string stk;
+    for (char c : s) {
+        if (!stk.empty() && stk.back() == c) {
+            stk.pop_back();
+        } else {
+            stk.push_back(c);
+        }
+    }
+    return stk;
+}
+```
+
+- 例题
+  - [1047-删除字符串中的所有相邻重复项](./算法训练/LeetCode/All/1047-删除字符串中的所有相邻重复项.cpp)
 
 ### 滑动窗口
 
