@@ -1,3 +1,5 @@
+# Remember
+
 ## 字符
 
 ```cpp
@@ -9,6 +11,88 @@ bool e;   // 布尔 2 1字节 true fasle
 static_cast<int>(a) // 转换字符
 numbers[5]; // 存储五个整数的数组
 ```
+
+## 运算符
+
+### 位运算符
+
+#### `&` 按位与
+
+- 两个位都为1时，结果为1，否则为0
+
+```cpp
+1 & 1 = 1
+1 & 0 = 0
+0 & 1 = 0
+0 & 0 = 0
+1100 & 1011 = 1000
+```
+
+- 与运算通常用于掩码操作，例如屏蔽某些位
+
+#### `|` 按位或
+
+- 两个位都为0时，结果为0，否则为1
+
+```cpp
+1 | 1 = 1
+1 | 0 = 1
+0 | 1 = 1
+0 | 0 = 0
+1100 | 1011 = 1111
+```
+
+- 或运算通常用于设置某些位
+
+#### `^` 按位异或
+
+- 两个位相同为0，不同为1
+
+```cpp
+1 ^ 1 = 0
+1 ^ 0 = 1
+0 ^ 1 = 1
+0 ^ 0 = 0
+1100 ^ 1011 = 0111
+```
+
+- 异或运算通常用于交换两个变量的值
+
+#### `~` 按位取反
+
+- 0变1，1变0
+
+```cpp
+~1 = 0
+~0 = 1
+~1100 = 0011
+```
+
+- 取反运算通常用于反转二进制位
+
+#### `<<` 左移
+
+- 各二进位全部左移若干位，高位丢弃，低位补0
+
+```cpp
+1 << 1 = 2
+1 << 2 = 4
+1100 << 1 = 1000
+```
+
+- 左移运算通常用于乘法操作，例如 `2 << 1` 等价于 `2 * 2`
+
+#### `>>` 右移
+
+- 各二进位全部右移若干位，低位丢弃，高位补0
+
+```cpp
+1 >> 1 = 0
+1 >> 2 = 0
+1100 >> 1 = 0110
+```
+
+- 右移运算通常用于除法操作，例如 `4 >> 1` 等价于 `4 / 2`
 
 ## 头文件
 
@@ -523,15 +607,97 @@ int LCM(int a, int b)
 
 ```cpp
 // 判断n是否为素数
-bool isprime(int n) 
+bool isPrime(int n) 
 {
-    if (n <= 1) return false;
-    int sqr = int(sqrt(n * 1.0));
-    for (int i = 2; i <= sqr; i++)
-    if (n % i == 0)
-        return false;
-return true;
+    if (n == 2) return true;
+    if (n <= 1 || n % 2 == 0) return false;
+    for (int i = 3; i * i <= n; i += 2)
+    {
+        if (n % i == 0) return false;
+    }
+    return true;
 }
+```
+
+### 判断回文数
+
+```cpp
+// 判断一个数是否为回文数
+bool isPalindrome(int n)
+{
+    string s = to_string(n);
+    int len = s.length();
+    for (int k = 0; k < len / 2; k++)
+    {
+        if (s[k] != s[len - 1 - k])
+            return false;
+    }
+    return true;
+}
+```
+
+### 各位数之和
+
+```cpp
+// 计算一个数的各位数之和
+int sumOfDigits(int n)
+{
+    int sum = 0;
+    while (n > 0)
+    {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
+}
+```
+
+### 斐波那契数列
+
+- 斐波那契数列的递推公式
+
+```cpp
+// 递归实现斐波那契数列
+int fib(int n)
+{
+    if (n <= 1) return n;
+    return fib(n - 1) + fib(n - 2); 
+}
+
+// 迭代实现斐波那契数列
+int fibIterative(int n) 
+{
+    if (n <= 1) return n;
+    int prev = 0, curr = 1;
+    for (int i = 2; i <= n; i++)
+    {
+        int next = prev + curr;
+        prev = curr;
+        curr = next;
+    }
+    return curr;
+}
+
+```
+
+### 关键的数学公式
+
+- 平方和公式
+
+```cpp
+1 * 1 + 2 * 2 + 3 * 3 + ... + n * n = n * (n + 1) * (2 * n + 1) / 6;
+```
+
+- 等差数列求和公式
+
+```cpp
+1 + 2 + 3 + ... + n = n * (n + 1) / 2;
+```
+
+- 等比数列求和公式
+
+```cpp
+sum = a * (1 - q ^ n) / (1 - q);
 ```
 
 ### 进制转换
@@ -552,6 +718,50 @@ return true;
 > - 3 ÷ 2 = 1 余 1
 > - 1 ÷ 2 = 0 余 1
 > - 从下往上读余数: 1101
+
+```cpp
+// 将十进制数转换为其他进制的代码实现
+string decimalToBase(int decimal, int base) {
+    if (decimal == 0) return "0";
+    
+    string result = "";
+    bool isNegative = decimal < 0;
+    decimal = abs(decimal);
+    
+    while (decimal > 0) {
+        int remainder = decimal % base;
+        char digit;
+        if (remainder < 10) {
+            digit = remainder + '0';
+        } else {
+            digit = remainder - 10 + 'A';  // 10->A, 11->B, ...
+        }
+        result = digit + result;
+        decimal /= base;
+    }
+    
+    return isNegative ? "-" + result : result;
+}
+
+// 其他进制转换为十进制
+int baseToDecimal(string number, int base) {
+    int result = 0;
+    bool isNegative = number[0] == '-';
+    int start = isNegative ? 1 : 0;
+    
+    for(int i = start; i < number.length(); i++) {
+        result *= base;
+        if(number[i] >= '0' && number[i] <= '9') {
+            result += number[i] - '0';
+        } else {
+            result += number[i] - 'A' + 10;  // A->10, B->11, ...
+        }
+    }
+    
+    return isNegative ? -result : result;
+}
+
+```
 
 ### 交换变量
 
@@ -784,3 +994,16 @@ while (right < s.size()) {
 
 - 题目
   - [3-无重复字符的最长子串](./算法训练/LeetCode/灵茶山艾府/01-滑动窗口与双指针/02-不定长滑动窗口/2.1-求最长或最大/03-无重复字符的最长子串.cpp)
+
+### 二分查找
+
+- 二分查找的模板
+
+```cpp
+while (left < right) 
+{
+    int mid = (left + right + 1) / 2;
+    if (check(mid)) left = mid;
+    else right = mid - 1;
+}
+```
