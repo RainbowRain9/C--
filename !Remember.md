@@ -577,6 +577,72 @@ void postOrder(TreeNode* root)
 
 ## 算法
 
+### 排序
+
+#### 插入排序
+
+- 模板
+
+```cpp
+void insertSort(vector<int>& data) {
+    int n = data.size();
+    for (int i = 1; i < n; i++) { // 从第二个元素开始插入
+        int temp = data[i]; // 当前待插入元素
+        int j = i - 1; // 从后往前遍历，找到插入位置
+        while (j >= 0 && temp < data[j]) {
+            data[j + 1] = data[j]; // 移动元素，腾出插入位置
+            j--; // 继续向前遍历
+        }
+        data[j + 1] = temp; // 插入元素
+    }
+}
+```
+
+- 例题
+  - [39-插入排序](./基础学习/39-广度优先遍历/01-插入排序.cpp)
+
+#### 冒泡排序
+
+- 模板
+
+```cpp
+void bubbleSort(vector<int>& data) {
+    int n = data.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (data[j] > data[j + 1]) swap(data[j], data[j + 1]);
+        }
+    }
+}
+```
+
+- 例题
+  - [39-冒泡排序](./基础学习/39-广度优先遍历/03-冒泡排序.cpp)
+
+#### 希尔排序
+
+- 模板
+
+```cpp
+void shellSort(vector<int>& data) {
+    int n = data.size();
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < n; i++) {
+            int temp = data[i];
+            int j = i;
+            while (j >= gap && temp < data[j - gap]) {
+                data[j] = data[j - gap];
+                j -= gap;
+            }
+            data[j] = temp;
+        }
+    }
+}
+```
+
+- 例题
+  - [39-希尔排序](./基础学习/39-广度优先遍历/04-希尔排序.cpp)
+
 ### 辗转相除法
 
 - 计算最大公约数

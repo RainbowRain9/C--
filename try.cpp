@@ -1,2 +1,10 @@
-2336-01-06 :46:12
+#include <iostream>
 
+using namespace std;
+
+int main()
+{
+	int	a;
+	cin >> a;
+	cout << a; 
+ } 
