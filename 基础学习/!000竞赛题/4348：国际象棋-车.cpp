@@ -7,10 +7,10 @@
  * 现在给你8个车，请把它们全部放到棋盘上，使得任意两个车都不会互相攻击。
  * 车本来可以攻击和它同行同列的棋子，但本题中，车在攻击的时候如果踩到一个洞，
  * 那么便会自取灭亡。故，车的攻击范围止于洞。
- * 
+ *
  * 以下是挖洞后的棋盘，1表示可以放置车，0表示洞，请计算有多少种放置方案：
  * 0 0 0 0 1 1 1 0
- * 0 0 0 0 0 0 1 0  
+ * 0 0 0 0 0 0 1 0
  * 1 0 1 0 1 1 1 0
  * 0 1 1 1 0 0 0 1
  * 1 1 0 0 0 0 1 1
@@ -52,8 +52,73 @@
 #include <cmath>
 using namespace std;
 
+// 棋盘布局,1表示可放置,0表示洞
+const int board[8][8] = {
+    {0, 0, 0, 0, 1, 1, 1, 0},
+    {0, 0, 0, 0, 0, 0, 1, 0},
+    {1, 0, 1, 0, 1, 1, 1, 0},
+    {0, 1, 1, 1, 0, 0, 0, 1},
+    {1, 1, 0, 0, 0, 0, 1, 1},
+    {0, 1, 0, 0, 1, 1, 1, 1},
+    {1, 1, 0, 1, 0, 1, 0, 1},
+    {0, 1, 0, 1, 1, 0, 0, 0}};
+
+int pos[8];  // 记录每行车的列位置
+int ans = 0; // 记录答案
+
+// 检查(row,col)位置是否可以放置车
+bool check(int row, int col)
+{
+    if (!board[row][col])
+        return false; // 是洞不能放
+
+    // 检查之前的行
+    for (int i = 0; i < row; i++)
+    {
+        // 同列检查,需考虑中间是否有洞
+        if (pos[i] == col)
+        {
+            bool blocked = false;
+            for (int r = i + 1; r < row; r++)
+            {
+                if (!board[r][col])
+                {
+                    blocked = true;
+                    break;
+                }
+            }
+            if (!blocked)
+                return false;
+        }
+    }
+    return true;
+}
+
+// DFS回溯
+void dfs(int row, int cnt)
+{
+    if (cnt == 8)
+    { // 放满8个车
+        ans++;
+        return;
+    }
+    if (row >= 8)
+        return;
+
+    // 尝试在当前行的每一列放置
+    for (int col = 0; col < 8; col++)
+    {
+        if (check(row, col))
+        {
+            pos[row] = col;
+            dfs(row + 1, cnt + 1);
+        }
+    }
+}
+
 int main()
 {
-    
+    dfs(0, 0);
+    cout << ans << endl;
     return 0;
 }

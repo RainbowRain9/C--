@@ -52,12 +52,12 @@ int main()
     int T;
     cin >> T;
     const int MOD = 1000000007;
-    
+
     while (T--)
     {
         long long k;
         cin >> k;
-        
+
         // 二分查找最大的n,使得前n组天数和<=k
         long long left = 1, right = 2000000;
         while (left < right)
@@ -65,18 +65,22 @@ int main()
             long long mid = (left + right + 1) / 2;
             // 避免溢出的天数计算
             long long days = 0;
-            if (mid <= 2000) { // 小数据直接计算
+            if (mid <= 2000)
+            { // 小数据直接计算
                 days = mid * (mid + 1) / 2;
-            } else {
+            }
+            else
+            {
                 // 大数据时需要判断是否超过k
-                if (mid > 1000000) {
+                if (mid > 1000000)
+                {
                     right = mid - 1;
                     continue;
                 }
                 days = mid;
                 days = (days * (mid + 1)) / 2;
             }
-            
+
             if (days <= k)
             {
                 left = mid;
@@ -86,23 +90,23 @@ int main()
                 right = mid - 1;
             }
         }
-        
+
         long long n = left;
         long long days = n * (n + 1) / 2;
-        
+
         // 计算前n组的金币总和
         long long sum = n;
         sum = (sum * (n + 1)) % MOD;
         sum = (sum * (2 * n + 1)) % MOD;
         sum = sum * 166666668 % MOD;
-        
+
         // 处理剩余天数
         if (k > days)
         {
             long long remain = k - days;
             sum = (sum + (n + 1) * remain % MOD) % MOD;
         }
-        
+
         cout << sum << endl;
     }
     return 0;

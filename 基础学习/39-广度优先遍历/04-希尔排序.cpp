@@ -36,6 +36,24 @@
 #include <cmath>
 using namespace std;
 
+// void shellSort(vector<int> &data)
+// {
+//     int n = data.size();
+//     for (int gap = n / 2; gap > 0; gap /= 2)
+//     {
+//         for (int i = gap; i < n; i++)
+//         {
+//             int temp = data[i];
+//             int j;
+//             for (j = i; j >= gap && data[j - gap] > temp; j -= gap)
+//             {
+//                 data[j] = data[j - gap];
+//             }
+//             data[j] = temp;
+//         }
+//     }
+// }
+
 void shellSort(vector<int> &data)
 {
     int n = data.size();
@@ -43,11 +61,12 @@ void shellSort(vector<int> &data)
     {
         for (int i = gap; i < n; i++)
         {
+            int j = i;
             int temp = data[i];
-            int j;
-            for (j = i; j >= gap && data[j - gap] > temp; j -= gap)
+            while (j >= gap && data[j - gap] > temp)
             {
                 data[j] = data[j - gap];
+                j -= gap;
             }
             data[j] = temp;
         }
@@ -63,7 +82,7 @@ int main()
     {
         cin >> data[i];
     }
-    shellSort(data);
+    selectSort(data);
     for (int i = 0; i < n; i++)
     {
         if (i > 0)
