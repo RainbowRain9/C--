@@ -1,5 +1,5 @@
 // Source : https://leetcode.cn/problems/container-with-most-water/description/
-// Date   : 2024-11-23
+// Date   : 2024-12-07
 /*
  * @lc app=leetcode.cn id=11 lang=cpp
  * @lcpr version=20003
@@ -39,7 +39,7 @@ public:
             w = right - left;
             h = min(height[left], height[right]);
             ans = max(ans, w * h);
-            if (height[left] < height[right])
+            if (height[left] <= height[right])
             {
                 left++;
             }

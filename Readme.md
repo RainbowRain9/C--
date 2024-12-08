@@ -1100,6 +1100,73 @@ while (right < s.size()) {
 - 题目
   - [3-无重复字符的最长子串](./算法训练/LeetCode/灵茶山艾府/01-滑动窗口与双指针/02-不定长滑动窗口/2.1-求最长或最大/03-无重复字符的最长子串.cpp)
 
+
+### 单序列双指针
+
+#### 1. 双向指针
+
+- 要点
+  - 双向指针一般用于处理数组或字符串中的问题
+  - 通常使用两个指针 `left` 和 `right` 从序列的不同位置开始移动
+  - 根据题目要求，可以从同一侧开始（快慢指针），也可以从两端开始（对撞指针）
+  - 通过移动这两个指针来寻找满足条件的解
+
+- 模板
+
+```cpp
+// 对撞指针基本模板
+int twoPointers(vector<int>& nums) {
+    int left = 0, right = nums.size() - 1;
+    while (left < right) {
+        // 根据条件移动指针
+        if (condition1) {
+            left++;
+        } else if (condition2) {
+            right--;
+        } else {
+            // 找到答案,更新结果
+            updateResult();
+            left++;
+            right--;
+        }
+    }
+    return result;
+}
+```
+
+- 题目
+  - [11-盛最多水的容器](./算法训练/LeetCode/灵茶山艾府/01-滑动窗口与双指针/03-单序列双指针/11-盛最多水的容器.cpp)
+
+#### 2. 同向指针
+
+- 要点
+  - 同向指针一般用于处理数组或字符串中的问题
+  - 通常使用一个指针 `left` 从序列的起点开始移动
+  - 根据题目要求，通过移动指针来寻找满足条件的解
+
+- 模板
+
+```cpp
+// 快慢指针基本模板 
+int fastSlowPointers(vector<int>& nums) {
+    int slow = 0, fast = 0;
+    while (fast < nums.size()) {
+        // 根据条件移动快指针
+        if (condition) {
+            // 移动慢指针并更新结果
+            nums[slow] = nums[fast];
+            slow++;
+        }
+        fast++;
+    }
+    return slow; // 通常返回慢指针位置
+}
+```
+
+- 题目
+  - [27-移除元素](./算法训练/LeetCode/灵茶山艾府/01-滑动窗口与双指针/03-单序列双指针/27-移除元素.cpp)
+
+
 ### 二分查找
 
 - 二分查找的模板
@@ -1108,7 +1175,8 @@ while (right < s.size()) {
 while (left < right) 
 {
     int mid = (left + right + 1) / 2;
-    if (check(mid)) left = mid;
+    if (check(mid)) left = mid; // 找最大的满足check的值
     else right = mid - 1;
 }
 ```
+

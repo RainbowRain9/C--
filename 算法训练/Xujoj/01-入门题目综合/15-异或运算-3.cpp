@@ -26,16 +26,21 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     int T;
     cin >> T;
 
-    while (T--) {
+    while (T--)
+    {
         long long n;
         cin >> n;
-        long long result = n % 2 == 1 ? n : 0;
+        for (int i = 0; i < n - 1; i++)
+        {
+            n = (n ^ n);
+        }
 
-        cout << result << endl;
+        cout << n << endl;
     }
 
     return 0;

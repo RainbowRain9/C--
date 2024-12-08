@@ -1,5 +1,5 @@
 // Source : https://leetcode.cn/problems/grumpy-bookstore-owner/
-// Date   : 2024-11-11
+// Date   : 2024-11-10
 
 /**************************************************
  * 有一个书店老板，他的书店每天的营业时间是 n 分钟。每分钟都有一些顾客进入书店，用数组 customers 表示，
@@ -49,17 +49,30 @@ public:
     int maxSatisfied(vector<int> &customers, vector<int> &grumpy, int minutes)
     {
         int n = customers.size();
+        // s[0]存储老板不生气时的顾客总数，s[1]存储当前窗口内老板生气时的顾客数
         int s[2]{}, max_s1 = 0;
-        for (int i = 0; i < n; i++)
+        
+        // 遍历每一分钟
+        for (int i = 0; i < customers.size(); i++)
         {
+            // 根据老板的情绪状态累加顾客数
             s[grumpy[i]] += customers[i];
+            
+            // 窗口未形成时继续
             if (i < minutes - 1)
+            {
                 continue;
-
+            }
+            
+            // 更新窗口内最大的生气顾客数
             max_s1 = max(max_s1, s[1]);
-
+            
+            // 移出窗口左端的生气顾客数
+            // 如果移出的时间点老板在生气，则减去对应的顾客数
             s[1] -= grumpy[i - minutes + 1] ? customers[i - minutes + 1] : 0;
         }
+        
+        // 返回所有不生气时的顾客数加上使用技巧可以挽回的最大顾客数
         return s[0] + max_s1;
     }
 };
