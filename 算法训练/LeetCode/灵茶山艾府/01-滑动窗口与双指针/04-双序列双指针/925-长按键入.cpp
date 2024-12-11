@@ -32,9 +32,11 @@ public:
     bool isLongPressedName(string name, string typed)
     {
         int i = 0, j = 0;
-        while (j < typed.length())
+        int n = name.length();
+        int m = typed.length();
+        while (j < m)
         {
-            if (i < name.length() && name[i] == typed[j])
+            if (i < n && name[i] == typed[j])
             {
                 i++;
                 j++;
@@ -43,12 +45,12 @@ public:
             {
                 j++;
             }
-            else 
+            else
             {
                 return false;
             }
         }
-        return i == name.length();
+        return i == n;
     }
 };
 // @lc code=end
