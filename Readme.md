@@ -643,6 +643,47 @@ void shellSort(vector<int>& data) {
 - 例题
   - [39-希尔排序](./基础学习/39-广度优先遍历/04-希尔排序.cpp)
 
+#### 简单选择排序
+
+- 模板
+
+```cpp
+void selectSort(vector<int>& data) {
+    int n = data.size();
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i; // 最小值的下标
+        for (int j = i + 1; j < n; j++) { // 遍历剩余元素
+            if (data[j] < data[minIndex]) minIndex = j; // 更新最小值的下标
+        }
+        if (minIndex != i) swap(data[i], data[minIndex]); // 交换最小值和当前元素
+    }
+}
+```
+
+- 例题
+  - [40-简单选择排序](./基础学习/40-选择排序/01-简单选择排序.cpp)
+
+#### 堆排序
+
+- 模板
+
+```cpp
+void heapify(vector<int>& data, int n, int i) {
+    int largest = i; // 最大值的下标
+    int left = 2 * i + 1; // 左子节点
+    int right = 2 * i + 2; // 右子节点
+    if (left < n && data[left] > data[largest]) largest = left; // 更新最大值的下标
+    if (right < n && data[right] > data[largest]) largest = right; // 更新最大值的下标
+    if (largest != i) { // 如果最大值的下标不是当前元素
+        swap(data[i], data[largest]); // 交换最大值和当前元素
+        heapify(data, n, largest); // 递归调整子树
+    }
+}
+```
+
+- 例题
+  - [40-堆排序](./基础学习/40-选择排序/03-堆排序.cpp)
+
 ### 辗转相除法
 
 - 计算最大公约数
