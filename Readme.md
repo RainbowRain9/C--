@@ -575,6 +575,23 @@ void postOrder(TreeNode* root)
 }
 ```
 
+- 层序遍历
+
+```cpp
+void levelOrder(TreeNode* root) {
+    if (!root) return;  // 如果根节点为空，直接返回
+    queue<TreeNode*> q; // 创建队列用于层序遍历
+    q.push(root);       // 将根节点入队
+    while (!q.empty()) {  // 当队列不为空时循环
+        TreeNode* node = q.front();  // 获取队首节点
+        q.pop();                     // 出队
+        cout << node->data << " ";   // 输出当前节点值
+        if (node->left) q.push(node->left);   // 左子节点入队
+        if (node->right) q.push(node->right); // 右子节点入队
+    }
+}
+```
+
 ## 算法
 
 ### 排序
@@ -683,6 +700,28 @@ void heapify(vector<int>& data, int n, int i) {
 
 - 例题
   - [40-堆排序](./基础学习/40-选择排序/03-堆排序.cpp)
+
+#### 快速排序
+
+- 模板
+
+```cpp
+void quickSort(vector<int>& data, int left, int right) {
+    if (left >= right) return; // 递归终止条件
+    int pivot = data[left]; // 选择基准值
+    int i = left, j = right;
+    while (i < j) {
+        while (i < j && data[j] >= pivot) j--; // 从右向左找第一个小于基准值的数
+        while (i < j && data[i] <= pivot) i++; // 从左向右找第一个大于基准值的数
+        if (i < j) swap(data[i], data[j]); // 交换这两个数
+    }
+    swap(data[left], data[i]); // 将基准值放到正确的位置
+    quickSort(data, left, i - 1); // 递归排序左半部分
+    quickSort(data, i + 1, right); // 递归排序右半部分
+}
+
+
+```
 
 ### 辗转相除法
 
