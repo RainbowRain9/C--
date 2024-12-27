@@ -538,6 +538,15 @@ TreeNode* deleteNode(TreeNode* root, int val) {
 
 ```
 
+#### 二叉树的深度
+
+```cpp
+int maxDepth(TreeNode* root) {
+    if (!root) return 0;
+    return 1 + max(maxDepth(root->left), maxDepth(root->right));
+}
+```
+
 #### 二叉树的遍历
 
 - 前序遍历
@@ -1112,6 +1121,22 @@ string removeDuplicates(string s) {
 
 - 例题
   - [1047-删除字符串中的所有相邻重复项](./算法训练/LeetCode/All/1047-删除字符串中的所有相邻重复项.cpp)
+
+### 尾数有多少个0
+
+- 模板
+
+```cpp
+// 计算一个数的阶乘末尾有多少个0
+int trailingZeroes(int n) {
+    int count = 0;
+    while (n > 0) {
+        n /= 5;
+        count += n;
+    }
+    return count;
+}
+```
 
 ### 滑动窗口
 
