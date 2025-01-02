@@ -1,68 +1,159 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
-typedef long long ll;
 
-int diff[100007]; // 差分数组  diff[i]表示a[i]-a[i-1]
-int a[100007];    // 原数组
-int pre[100007];  // 前缀和数组  pre[i]表示下标从1到i的所有a[i]的和
+// 插入排序
+void InsertSort(vector<int> &a)
+{
+    for (int i = 1; i < a.size(); i++)
+    {
+        int temp = a[i];
+        int j = i - 1;
+        while (j >= 0 && a[j] > temp)
+        {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = temp;
+    }
+}
 
-// 对差分数组做前缀和还原原数组
-// 对前缀和数组做差分还原原数组
+// 冒泡排序
+void BubbleSort(vector<int> &a)
+{
+    int n = a.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - 1 - i; j++)
+        {
+            if (a[j] > a[j + 1])
+                swap(a[j], a[j + 1]);
+        }
+    }
+}
 
-// for(int i=1;i<=n;i++)diff[i]=a[i]-a[i-1];
+// 简单排序
+void SelectSort(vector<int> &a)
+{
+    int n = a.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[j] < a[minIndex])
+                minIndex = j;
+        }
+        if (i != minIndex)
+        {
+            swap(a[i], a[minIndex]);
+        }
+    }
+}
 
-// 前缀和是O（1）查询区间值
-// 差分是O（1）修改区间值
+// 希尔排序
+void ShellSort(vector<int> &a)
+{
+    int n = a.size();
+    for (int gap = n / 2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < n; i++)
+        {
+            int temp = a[i];
+            int j = i - gap;
+            while (j >= 0 && a[j] > temp)
+            {
+                a[j + gap] = a[j];
+                j -= gap;
+            }
+            a[j + gap] = temp;
+        }
+    }
+}
 
-// pre[i]=a1+a2+...+ai
-// a[i]=d1+d2+d3+....+di
-// a1=d1
-// a2=d1+d2
-// a3=d1+d2+d3
-//......
+// 堆排序
+void heapify(vector<int> &a, int n, int i)
+{
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
 
-// d1++;之后再还原原数组，原数组会有什么区别
-// a1-an都会++
-// d[l]++;-->al-an全部++
-// al=d1+...dl
-// al+1=d1+...+dl+dl+1
+    if (left < n && a[left] > a[largest])
+        largest = left;
+    if (right < n && a[right] > a[largest])
+        largest = right;
 
-// dl++ dl-dn++
-// dl-dr++
-// dr+1-dn--
-// d[r+1]--
+    if (i != largest)
+    {
+        swap(a[i], a[largest]);
+        heapify(a, n, largest);
+    }
+}
 
-// pre[i]=pre[i-1]+a[i]
+void HeapSort(vector<int> &a)
+{
+    int n = a.size();
 
-// b是diff的前缀和数组
-// b[i]=b[i-1]+diff[i]
-//  b       1   3  2  5   7   2
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        heapify(a, n, i);
+    }
 
-// c是pre数组的差分数组
-// c[i]=pre[i]-pre[i-1]
-// c   1  3  2  5  7   2
+    for (int i = n - 1; i > 0; i--)
+    {
+        swap(a[0], a[i]);
+        heapify(a, i, 0);
+    }
+}
 
-// diff    1   2  -1  3   2   -5
-// a       1   3  2   5   7   2
-// pre      1   4  6   11  18  20
+// 快速排序
+int partition(vector<int> &a, int left, int right)
+{
+    int pivot = a[left];
+    while (left < right)
+    {
+        while (left < right && a[right] >= pivot)
+            right--;
+        a[left] = a[right];
+        while (left < right && a[left] <= pivot)
+            left++;
+        a[right] = a[left];
+    }
+    a[left] = pivot;
+    return left;
+}
 
+void QuickSort(vector<int> &a, int left, int right)
+{
+    if (left < right)
+    {
+        int pos = partition(a, left, right);
+        QuickSort(a, left, pos - 1);
+        QuickSort(a, pos + 1, right);
+    }
+}
+
+// 主程序
 int main()
 {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    // InsertSort(a);
+    // BubbleSort(a);
+    // SelectSort(a);
+    // ShellSort(a);
+    // HeapSort(a);
+    QuickSort(a, 0, n - 1);
 
-    int n, c, d;
-    cin >> n >> c >> d;
-    while (d--) // O(q) q=1e5
+    for (int i = 0; i < n; i++)
     {
-        int l, r;
-        cin >> l >> r;
-        diff[l]++, diff[r + 1]--;
+        cout << a[i] << " ";
     }
-    int ans = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        a[i] = diff[i] + a[i - 1];
-        if (a[i] >= c)
-            ans++;
-    }
-    cout << ans;
 }
+
+// 5 3 2 1 5 4

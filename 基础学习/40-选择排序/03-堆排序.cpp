@@ -43,22 +43,24 @@
 using namespace std;
 
 // 向下调整堆的函数
-void heapify(vector<int> &nums, int n, int parent)
+void heapify(vector<int> &nums, int n, int parent) // 向下调整堆的函数
 {
-    while (parent * 2 + 1 < n)
+    while (parent * 2 + 1 < n) // 当左子节点存在时继续循环
     {
-        int child = parent * 2 + 1; // 左子节点
-        // 选择较大的子节点
+        int child = parent * 2 + 1; // 获取左子节点的索引
+        // 如果右子节点存在且大于左子节点,则选择右子节点
         if (child + 1 < n && nums[child + 1] > nums[child])
         {
-            child++;
+            child++; // child指向较大的子节点
         }
-        // 如果父节点已经大于子节点，终止调整
+        // 如果父节点已经大于等于较大的子节点,说明已经满足堆的性质,终止调整
         if (nums[parent] >= nums[child])
         {
             break;
         }
+        // 交换父节点和较大的子节点
         swap(nums[parent], nums[child]);
+        // 继续向下调整
         parent = child;
     }
 }
