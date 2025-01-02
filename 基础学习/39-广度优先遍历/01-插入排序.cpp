@@ -36,27 +36,32 @@
 #include <cmath>
 using namespace std;
 
-int main()
+void InsertSort(vector<int>& data)
 {
-    int n;
-    cin >> n;
-    int data[n];
-    for (int i = 0; i < n; i++)
+    int n = data.size();
+    for (int i = 1; i < n; i++)
     {
-        cin >> data[i];
-    }
-    int i, j, temp;
-    for (int i = 0; i < n; i++)
-    {
-        temp = data[i];
-        j = i - 1;
-        while (j >= 0 && temp < data[j])
+        int temp = data[i];
+        int j = i - 1;
+        while (j >= 0 && data[j] > temp)
         {
             data[j + 1] = data[j];
             j--;
         }
         data[j + 1] = temp;
     }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> data(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> data[i];
+    }
+    InsertSort(data);
     for (int i = 0; i < n; i++)
     {
         if (i == 0)

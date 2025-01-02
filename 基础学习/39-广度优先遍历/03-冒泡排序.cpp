@@ -44,11 +44,11 @@ using namespace std;
 void bubbleSort(vector<int> &data)
 {
     int n = data.size();
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n - 1; i++)
     {
         for (int j = 0; j < n - 1 - i; j++)
         {
-            if (data[j] > data[j + 1])
+            if (data[j + 1] < data[j])
                 swap(data[j], data[j + 1]);
         }
     }

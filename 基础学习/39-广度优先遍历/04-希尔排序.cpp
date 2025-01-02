@@ -61,14 +61,14 @@ void shellSort(vector<int> &data)
     {
         for (int i = gap; i < n; i++)
         {
-            int j = i;
             int temp = data[i];
-            while (j >= gap && data[j - gap] > temp)
+            int j = i - gap;
+            while (j >= 0 && data[j] > temp)
             {
-                data[j] = data[j - gap];
+                data[j + gap] = data[j];
                 j -= gap;
             }
-            data[j] = temp;
+            data[j + gap] = temp;
         }
     }
 }
@@ -82,7 +82,7 @@ int main()
     {
         cin >> data[i];
     }
-    selectSort(data);
+    shellSort(data);
     for (int i = 0; i < n; i++)
     {
         if (i > 0)
