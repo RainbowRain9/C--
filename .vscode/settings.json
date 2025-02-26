@@ -75,5 +75,36 @@
         "valarray": "cpp",
         "queue": "cpp",
         "stack": "cpp"
-    }
+    },
+    "extensions.ignoreRecommendations": true,
+    "java.enabled": false,
+    "extensions.disableExtension": [
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-spring-initializr",
+        "vscjava.vscode-gradle",
+        "naco-siren.gradle-language",
+        "georgewfraser.vscode-javac",
+        "oracle.oracle-java",
+        "walkme.java-extension-pack",
+        "ritwickdey.liveserver",
+        "qiu8310.minapp-vscode",
+        "wowbox.minapp-vscode-box",
+        "coderfee.vscode-weapp-api",
+        "adelphes.android-dev-ext",
+        "vscode-icons-team.vscode-icons",
+        "akamud.vscode-theme-onedark",
+        "github.github-vscode-theme",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-ssh",
+        "ms-vscode-remote.remote-ssh-edit",
+        "ms-azuretools.vscode-docker",
+        "ms-vsliveshare.vsliveshare",
+        "ms-vsliveshare.vsliveshare-audio",
+        "diemasmichiels.emulate",
+        "marscode.marscode-extension"
+    ]
 }

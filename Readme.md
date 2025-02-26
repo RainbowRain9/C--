@@ -601,6 +601,7 @@ void levelOrder(TreeNode* root) {
 }
 ```
 
+
 ## 算法
 
 ### 排序
@@ -1208,6 +1209,55 @@ int trailingZeroes(int n) {
 }
 ```
 
+### 取整
+
+- 向上取整
+
+```cpp
+// 向上取整
+// 方法1：使用ceil函数
+ceil(double(a) / b);
+
+// 方法2：不使用ceil函数
+(a + b - 1) / b;
+
+// 方法3：使用整数除法
+(a - 1) / b + 1;  // 当a > 0时
+
+```
+
+- 向下取整
+
+```cpp
+// 向下取整
+// 方法1：使用floor函数
+floor(double(a) / b);
+
+// 方法2：直接使用整数除法
+a / b;  // C++整数除法自动向下取整
+
+```
+
+### 前缀和
+
+- 前缀和是一种预处理技术，用于快速计算数组中一段区间的元素和。
+
+- 模板
+
+```cpp
+// 前缀和数组构建
+vector<int> prefix_sum(n + 1, 0);
+for (int i = 1; i <= n; i++) {
+    prefix_sum[i] = prefix_sum[i - 1] + arr[i - 1];
+}
+
+// 查询区间[left, right]的和
+int query(int left, int right) {
+    return prefix_sum[right + 1] - prefix_sum[left];
+}
+
+```
+
 ### 滑动窗口
 
 #### 1. 定长滑动窗口
@@ -1348,14 +1398,70 @@ int fastSlowPointers(vector<int>& nums) {
 
 ### 二分查找
 
-- 二分查找的模板
+#### 1. 查找第一个大于等于target的元素
 
 ```cpp
-while (left < right) 
+// 左闭右开
+int lower_bound(vector<int>& nums, int target)
 {
-    int mid = (left + right + 1) / 2;
-    if (check(mid)) left = mid; // 找最大的满足check的值
-    else right = mid - 1;
+    int left = 0, right = nums.size();
+    while (left < right)
+    {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) left = mid + 1;
+        else right = mid;
+    }
+    return left;
 }
+
+// 左闭右闭
+int lower_bound(vector<int>& nums, int target)
+{
+    int left = 0, right = nums.size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return left;
+}
+
+// 使用lower_bound
+auto it = lower_bound(nums.begin(), nums.end(), target);
+```
+
+#### 2. 查找第一个大于target的元素
+
+```cpp
+// 左闭右开
+int upper_bound(vector<int>& nums, int target)
+{
+    int left = 0, right = nums.size();
+    while (left < right)
+    {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] <= target) left = mid + 1;
+        else right = mid;
+    }
+    return left;
+}
+
+// 左闭右闭
+int upper_bound(vector<int>& nums, int target)
+{
+    int left = 0, right = nums.size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] <= target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return left;
+}
+
+// 使用upper_bound
+auto it = upper_bound(nums.begin(), nums.end(), target);
+
 ```
 

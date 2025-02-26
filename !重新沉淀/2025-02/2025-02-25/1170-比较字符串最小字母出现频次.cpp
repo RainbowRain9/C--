@@ -31,21 +31,42 @@ class Solution
 public:
     vector<int> numSmallerByFrequency(vector<string> &queries, vector<string> &words)
     {
-        vector<int> wordFreq;
-        for (auto word : words)
-        {
-            wordFreq.push_back(calculateF(word));
-        }
-        sort(wordFreq.begin(), wordFreq.end());
+        int n = queries.size();
+        int m = words.size();
+        vector<int> answer(n);
+        vector<int> wordsF(m);
 
-        vector<int> res;
-        for (auto &query : queries)
+        for (int j = 0; j < m; j++)
         {
-            int fq = calculateF(query);
-            auto it = upper_bound(wordFreq.begin(), wordFreq.end(), fq);
-            res.push_back(wordFreq.end() - it);
+            wordsF[j] = calculateF(words[j]);
         }
-        return res;
+
+        sort(wordsF.begin(), wordsF.end());
+
+        for (int i = 0; i < n; i++)
+        {
+            int queryF = calculateF(queries[i]);
+            
+            // 使用二分查找找到第一个大于queryF的元素位置
+            int left = 0, right = m;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (wordsF[mid] > queryF)
+                {
+                    right = mid;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+            }
+            
+            // left现在指向第一个大于queryF的元素
+            // m - left 就是大于queryF的元素个数
+            answer[i] = m - left;
+        }
+        return answer;
     }
 
 private:
@@ -53,6 +74,7 @@ private:
     {
         char minChar = 'z';
         int count = 0;
+
         for (auto c : s)
         {
             if (c < minChar)
@@ -65,6 +87,7 @@ private:
                 count++;
             }
         }
+
         return count;
     }
 };

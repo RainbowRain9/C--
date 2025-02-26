@@ -1,5 +1,5 @@
 // Source : https://leetcode.cn/problems/maximum-count-of-positive-integer-and-negative-integer/description/
-// Date   : 2024-12-18
+// Date   : 2025-02-25
 /*
  * @lc app=leetcode.cn id=2529 lang=cpp
  * @lcpr version=20004
@@ -31,11 +31,19 @@ class Solution
 public:
     int maximumCount(vector<int> &nums)
     {
-        int neg = ranges::lower_bound(nums, 0) - nums.begin();
-        int pos = nums.end() - ranges::upper_bound(nums, 0);
-        return max(neg, pos);
+        // 使用二分查找找到第一个大于等于0的元素位置
+        int firstNonNeg = lower_bound(nums.begin(), nums.end(), 0) - nums.begin();
+        // 使用二分查找找到第一个大于0的元素位置
+        int firstPos = upper_bound(nums.begin(), nums.end(), 0) - nums.begin();
+        
+        // 负数的数量就是第一个非负数的索引
+        int neg = firstNonNeg;
+        // 正数的数量就是总长度减去第一个正数的索引
+        int pos = nums.size() - firstPos;
+        
+        return max(pos, neg);
     }
-    
+    // End of Selection
 };
 // @lc code=end
 

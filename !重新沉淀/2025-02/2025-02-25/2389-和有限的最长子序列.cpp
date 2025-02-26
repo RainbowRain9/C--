@@ -31,23 +31,33 @@ class Solution
 public:
     vector<int> answerQueries(vector<int> &nums, vector<int> &queries)
     {
+        int n = nums.size();
+        int m = queries.size();
         sort(nums.begin(), nums.end());
+        vector<int> answer(m);
 
-        vector<long long> prefix;
-        long long sum = 0;
-        for (auto num : nums)
+        vector<int> prefixSum(n);
+        prefixSum[0] = nums[0];
+        for (int i = 1; i < n; i++)
         {
-            sum += num;
-            prefix.push_back(sum);
+            prefixSum[i] = prefixSum[i - 1] + nums[i];
+        }
+        
+        for (int i = 0; i < m; i++)
+        {
+            int left = 0, right = n;
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (prefixSum[mid] <= queries[i]) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+            answer[i] = left;
         }
 
-        vector<int> ans;
-        for (auto q : queries)
-        {
-            auto it = upper_bound(prefix.begin(), prefix.end(), q);
-            ans.push_back(it - prefix.begin());
-        }
-        return ans;
+        return answer;
     }
 };
 // @lc code=end

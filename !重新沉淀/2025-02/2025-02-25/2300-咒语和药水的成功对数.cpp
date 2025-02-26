@@ -7,7 +7,7 @@
  * potions[j] 表示第 j 个药水的强度。同时给定一个整数 success。
  * 一个咒语和药水的组合是成功的，当且仅当咒语强度与药水强度的乘积大于或等于 success。
  * 请你返回一个长度为 n 的数组 pairs，其中 pairs[i] 是能够与第 i 个咒语组成成功组合的药水数目。
- * 
+ *
  * 示例 1：
  *   输入：spells = [5,1,3], potions = [1,2,3,4,5], success = 7
  *   输出：[4,0,3]
@@ -15,7 +15,7 @@
  *   - 第 0 个咒语：5 * [1,2,3,4,5] = [5,10,15,20,25]，其中 4 个 >= 7
  *   - 第 1 个咒语：1 * [1,2,3,4,5] = [1,2,3,4,5]，其中 0 个 >= 7
  *   - 第 2 个咒语：3 * [1,2,3,4,5] = [3,6,9,12,15]，其中 3 个 >= 7
- * 
+ *
  * 示例 2：
  *   输入：spells = [3,1,2], potions = [8,5,8], success = 16
  *   输出：[2,0,2]
@@ -23,7 +23,7 @@
  *   - 第 0 个咒语：3 * [8,5,8] = [24,15,24]，其中 2 个 >= 16
  *   - 第 1 个咒语：1 * [8,5,8] = [8,5,8]，其中 0 个 >= 16
  *   - 第 2 个咒语：2 * [8,5,8] = [16,10,16]，其中 2 个 >= 16
- * 
+ *
  * 提示：
  *   - n == spells.length
  *   - m == potions.length
@@ -38,7 +38,6 @@
  *
  * [2300] 咒语和药水的成功对数
  */
-
 
 // @lcpr-template-start
 using namespace std;
@@ -59,26 +58,62 @@ using namespace std;
 #include <vector>
 // @lcpr-template-end
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) {
+    vector<int> successfulPairs(vector<int> &spells, vector<int> &potions, long long success)
+    {
+        int n = spells.size();
+        int m = potions.size();
+        vector<int> pairs(n, 0);
+        
+        // 先对药水数组排序，便于二分查找
         sort(potions.begin(), potions.end());
         
-        vector<int> ans;
-        for (int spell : spells) {
-            long long target = (success + spell - 1) / spell; 
-
-            auto it = lower_bound(potions.begin(), potions.end(), target);
+        for (int i = 0; i < n; i++)
+        {
+            // 计算当前咒语需要的最小药水强度
+            // 使用 ceil(success / spell) 来找到满足条件的最小药水强度
+            // 注意处理整数除法的向上取整
+            long long minPotion = (success + spells[i] - 1) / spells[i];
             
-            int count = potions.end() - it;
-            ans.push_back(count);
+            // 如果最小所需强度大于最大药水强度，则没有成功组合
+            if (minPotion > potions[m - 1])
+            {
+                pairs[i] = 0;
+                continue;
+            }
+            
+            // 如果最小所需强度小于等于最小药水强度，则所有药水都能组成成功组合
+            if (minPotion <= potions[0])
+            {
+                pairs[i] = m;
+                continue;
+            }
+            
+            // 二分查找第一个大于等于 minPotion 的药水
+            int left = 0, right = m - 1;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (potions[mid] < minPotion)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+            
+            // 计算满足条件的药水数量
+            pairs[i] = m - left;
         }
-        return ans;
+        
+        return pairs;
     }
 };
 // @lc code=end
-
-
 
 /*
 // @lcpr case=start
@@ -90,4 +125,3 @@ public:
 // @lcpr case=end
 
  */
-
