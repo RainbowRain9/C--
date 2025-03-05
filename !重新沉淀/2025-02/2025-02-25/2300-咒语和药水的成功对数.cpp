@@ -76,38 +76,12 @@ public:
             // 使用 ceil(success / spell) 来找到满足条件的最小药水强度
             // 注意处理整数除法的向上取整
             long long minPotion = (success + spells[i] - 1) / spells[i];
-            
-            // 如果最小所需强度大于最大药水强度，则没有成功组合
-            if (minPotion > potions[m - 1])
-            {
-                pairs[i] = 0;
-                continue;
-            }
-            
-            // 如果最小所需强度小于等于最小药水强度，则所有药水都能组成成功组合
-            if (minPotion <= potions[0])
-            {
-                pairs[i] = m;
-                continue;
-            }
-            
+                    
             // 二分查找第一个大于等于 minPotion 的药水
-            int left = 0, right = m - 1;
-            while (left < right)
-            {
-                int mid = left + (right - left) / 2;
-                if (potions[mid] < minPotion)
-                {
-                    left = mid + 1;
-                }
-                else
-                {
-                    right = mid;
-                }
-            }
+            auto it = ranges::lower_bound(potions, minPotion);
             
             // 计算满足条件的药水数量
-            pairs[i] = m - left;
+            pairs[i] = potions.end() - it;
         }
         
         return pairs;

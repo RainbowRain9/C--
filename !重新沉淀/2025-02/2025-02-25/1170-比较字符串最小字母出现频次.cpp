@@ -46,25 +46,10 @@ public:
         for (int i = 0; i < n; i++)
         {
             int queryF = calculateF(queries[i]);
-            
-            // 使用二分查找找到第一个大于queryF的元素位置
-            int left = 0, right = m;
-            while (left < right)
-            {
-                int mid = left + (right - left) / 2;
-                if (wordsF[mid] > queryF)
-                {
-                    right = mid;
-                }
-                else
-                {
-                    left = mid + 1;
-                }
-            }
-            
-            // left现在指向第一个大于queryF的元素
-            // m - left 就是大于queryF的元素个数
-            answer[i] = m - left;
+
+            auto it = ranges::upper_bound(wordsF, queryF);
+
+            answer[i] = wordsF.end() - it;
         }
         return answer;
     }
@@ -74,20 +59,18 @@ private:
     {
         char minChar = 'z';
         int count = 0;
-
-        for (auto c : s)
+        for (int i = 0; i < s.length(); i++)
         {
-            if (c < minChar)
+            if (s[i] < minChar)
             {
-                minChar = c;
+                minChar = s[i];
                 count = 1;
             }
-            else if (c == minChar)
+            else if (s[i] == minChar)
             {
                 count++;
             }
         }
-
         return count;
     }
 };

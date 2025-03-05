@@ -45,16 +45,8 @@ public:
         
         for (int i = 0; i < m; i++)
         {
-            int left = 0, right = n;
-            while (left < right) {
-                int mid = left + (right - left) / 2;
-                if (prefixSum[mid] <= queries[i]) {
-                    left = mid + 1;
-                } else {
-                    right = mid;
-                }
-            }
-            answer[i] = left;
+            auto it = ranges::lower_bound(prefixSum, queries[i]);
+            answer[i] = it - prefixSum.begin();
         }
 
         return answer;

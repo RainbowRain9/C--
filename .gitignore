@@ -1,2 +1,8 @@
 # 忽略所有的.exe文件
 *.exe
+
+# 忽略所有的.bat文件
+*.bat
+
+# 忽略vscode配置文件
+.vscode
