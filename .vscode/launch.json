@@ -1,26 +1,32 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
-            "name": "(gdb) Launch",
+            "name": "C++ Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/your_program_name",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "gdb.exe",
             "setupCommands": [
                 {
-                    "description": "Enable pretty-printing for gdb",
+                    "description": "Enable pretty-printing",
                     "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set character encoding to UTF-8",
+                    "text": "set target-charset UTF-8",
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build", // 这里假设你有一个名为"build"的任务来编译你的程序
-            "miDebuggerPath": "/path/to/gdb" // 如果gdb不在PATH中，需要指定gdb的路径
+            "preLaunchTask": "C/C++ build"
         }
     ]
 }

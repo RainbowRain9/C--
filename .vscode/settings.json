@@ -78,7 +78,11 @@
         "*.cpp": "cpp"
     },
     "cSpell.words": [
-        "cbaebabacd"
+        "atoi",
+        "cbaebabacd",
+        "cmath",
+        "leetcode",
+        "LLONG"
     ],
     // 头部注释
     "fileheader.customMade": {
@@ -97,10 +101,23 @@
     "path-intellisense.mappings": {
         "@docs": "${workspaceFolder}/docs"
     },
-    "todo-tree.general.tags": ["TODO", "LastEditTime", "今日", "本周", "历史"],
+    "todo-tree.general.tags": [
+        "TODO",
+        "LastEditTime",
+        "今日",
+        "本周",
+        "历史"
+    ],
     "todo-tree.general.tagGroups": {
-        "时间": ["今日", "本周", "历史"],
-        "类型": ["TODO", "LastEditTime"]
+        "时间": [
+            "今日",
+            "本周",
+            "历史"
+        ],
+        "类型": [
+            "TODO",
+            "LastEditTime"
+        ]
     },
     "todo-tree.regex.regex": "(LastEditTime:\\s*(\\d{4}-\\d{2}-\\d{2}))|(.*/(\\d{4}-\\d{2}-\\d{2})/.*\\.cpp$)|(s*TODO\\s*(\\d{4}-\\d{2}-\\d{2}))",
     "todo-tree.highlights.customHighlight": {
@@ -142,6 +159,5 @@
     "todo-tree.highlights.useColourScheme": true,
     "todo-tree.tree.hideIconsWhenGroupedByTag": false,
     "todo-tree.tree.groupedByTag": false,
-    "todo-tree.tree.groupedBySubTag": false,
-
+    "todo-tree.tree.groupedBySubTag": false
 }
