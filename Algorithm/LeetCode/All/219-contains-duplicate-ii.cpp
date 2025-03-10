@@ -1,8 +1,8 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-09 16:28:28
- * @LastEditTime: 2025-03-09 16:41:13
- * @FilePath: \C++\算法训练\LeetCode\All\219-存在重复元素 II.cpp
+ * @LastEditTime: 2025-03-10 22:16:52
+ * @FilePath: \C++\Algorithm\LeetCode\All\219-contains-duplicate-ii.cpp
  * @Description:
  */
 /*
@@ -73,24 +73,41 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-09:
 // @lc code=start
 class Solution
 {
 public:
+    // bool containsNearbyDuplicate(vector<int> &nums, int k) // 哈希表
+    // {
+    //     unordered_map<int, int> map;
+    //     int n = nums.size();
+    //     for (int i = 0; i < n; i++)
+    //     {
+    //         if (map.count(nums[i]) && i - map[nums[i]] <= k)
+    //         {
+    //             return true;
+    //         }
+    //         map[nums[i]] = i;
+    //     }
+
+    //     return false;
+    // }
     bool containsNearbyDuplicate(vector<int> &nums, int k)
     {
-        unordered_map<int, int> map;
+        unordered_set<int> set;
         int n = nums.size();
         for (int i = 0; i < n; i++)
         {
-            if (map.count(nums[i]) && i - map[nums[i]] <= k)
+            if (i > k)
+            {
+                set.erase(nums[i]);
+            }
+            if (set.count(nums[i]))
             {
                 return true;
             }
-            map[nums[i]] = i;
+            set.insert(nums[i]);
         }
-
         return false;
     }
 };
@@ -99,7 +116,12 @@ public:
 int main()
 {
     Solution solution;
-    // your test code here
+    vector<int> nums1 = {1,2,3,1};
+    cout << solution.containsNearbyDuplicate(nums1, 3) << endl;
+    vector<int> nums2 = {1,0,1,1}; 
+    cout << solution.containsNearbyDuplicate(nums2, 1) << endl;
+    vector<int> nums3 = {1,2,3,1,2,3};
+    cout << solution.containsNearbyDuplicate(nums3, 2) << endl;
 }
 
 /*

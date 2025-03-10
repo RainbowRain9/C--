@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-09 20:33:30
- * @LastEditTime: 2025-03-09 21:13:39
+ * @LastEditTime: 2025-03-10 22:40:07
  * @FilePath: \C++\Algorithm\LeetCode\All\3-longest-substring-without-repeating-characters.cpp
  * @Description:
  */
@@ -77,7 +77,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-09: 
 // @lc code=start
 class Solution
 {
@@ -85,16 +84,15 @@ public:
     int lengthOfLongestSubstring(string s)
     {
         unordered_map<char, int> map;
-        int maxLen = 0;
-        int left = 0;
-        for (size_t right = 0; right < s.size(); right++)
+        int left = 0, maxLen = 0;
+        for (int right = 0; right < s.length(); right++)
         {
             if (map.find(s[right]) != map.end() && map[s[right]] >= left)
             {
                 left = map[s[right]] + 1;
             }
             map[s[right]] = right;
-            maxLen = max(maxLen, static_cast<int>(right - left + 1));
+            maxLen = max(maxLen, right - left + 1);
         }
         return maxLen;
     }
@@ -106,10 +104,10 @@ int main()
     Solution solution;
     string test1 = "abcabcbb";
     cout << "Test 1: " << solution.lengthOfLongestSubstring(test1) << endl;
-    
-    string test2 = "bbbbb"; 
+
+    string test2 = "bbbbb";
     cout << "Test 2: " << solution.lengthOfLongestSubstring(test2) << endl;
-    
+
     string test3 = "pwwkew";
     cout << "Test 3: " << solution.lengthOfLongestSubstring(test3) << endl;
 }

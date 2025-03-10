@@ -1,8 +1,8 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-09 18:11:23
- * @LastEditTime: 2025-03-09 18:26:38
- * @FilePath: \C++\算法训练\LeetCode\All\209-长度最小的子数组.cpp
+ * @LastEditTime: 2025-03-10 22:01:22
+ * @FilePath: \C++\Algorithm\LeetCode\All\209-minimum-size-subarray-sum.cpp
  * @Description:
  */
 /*
@@ -85,7 +85,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-09:
 // @lc code=start
 class Solution
 {
@@ -93,17 +92,13 @@ public:
     int minSubArrayLen(int target, vector<int> &nums)
     {
         int n = nums.size();
-        int minLen = INT_MAX;
         int left = 0, sum = 0;
+        int minLen = INT_MAX;
         for (int right = 0; right < n; right++)
         {
             int num = nums[right];
             sum += num;
-            if (sum < target)
-            {
-                continue;
-            }
-            while (left <= right && sum >= target)
+            while (sum >= target && left <= right)
             {
                 minLen = min(minLen, right - left + 1);
                 sum -= nums[left++];
@@ -117,7 +112,7 @@ public:
 int main()
 {
     Solution solution;
-    vector<int> nums = {2,3,1,2,4,3};
+    vector<int> nums = {2, 3, 1, 2, 4, 3};
     int target = 7;
     int result = solution.minSubArrayLen(target, nums);
     cout << "Result: " << result << endl;

@@ -1,6 +1,6 @@
 # Labuladong速刷题单索引
 
-本索引基于[Labuladong速成题单](Labuladong速成题单.md)整理，将题解按照类别进行分类。
+本索引基于[Labuladong速成题单](https://labuladong.online/algo/intro/quick-learning-plan)整理，将题解按照类别进行分类。
 
 ## §1 链表双指针技巧
 - [21. 合并两个有序链表](./../All/21-merge-two-sorted-lists.cpp) 🟢
@@ -25,8 +25,8 @@
 - [25. K 个一组翻转链表](./../All/25-reverse-nodes-in-k-group.cpp) 🔴❌
 
 ## §3 数组双指针技巧
-- [26. 删除有序数组中的重复项](./../All/26-remove-duplicates-from-sorted-array.cpp) 🟢❌
-- [83. 删除排序链表中的重复元素](./../All/83-remove-duplicates-from-sorted-list.cpp) 🟢❌
+- [26. 删除有序数组中的重复项](./../All/26-remove-duplicates-from-sorted-array.cpp) 🟢
+- [83. 删除排序链表中的重复元素](./../All/83-remove-duplicates-from-sorted-list.cpp) 🟢
 - [27. 移除元素](./../All/27-remove-element.cpp) 🟢❌
 - [283. 移动零](./../All/283-move-zeroes.cpp) 🟢❌
 - [167. 两数之和 II - 输入有序数组](./../All/167-two-sum-ii-input-array-is-sorted.cpp) 🟠❌

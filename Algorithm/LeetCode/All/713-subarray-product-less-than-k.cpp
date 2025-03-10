@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-08 20:43:15
- * @LastEditTime: 2025-03-09 19:57:52
+ * @LastEditTime: 2025-03-10 22:49:13
  * @FilePath: \C++\Algorithm\LeetCode\All\713-subarray-product-less-than-k.cpp
  * @Description:
  */
@@ -68,7 +68,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-09:
 // @lc code=start
 class Solution
 {
@@ -76,9 +75,8 @@ public:
     int numSubarrayProductLessThanK(vector<int> &nums, int k)
     {
         int n = nums.size();
-        int left = 0, cnt = 0;
         int total = 1;
-
+        int left = 0, cnt = 0;
         for (int right = 0; right < n; right++)
         {
             int num = nums[right];
