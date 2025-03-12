@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-10 22:54:44
- * @LastEditTime: 2025-03-10 23:22:01
+ * @LastEditTime: 2025-03-11 13:22:14
  * @FilePath: \C++\Algorithm\LeetCode\All\26-remove-duplicates-from-sorted-array.cpp
  * @Description:
  */
@@ -95,7 +95,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-10: 
 // @lc code=start
 class Solution
 {
@@ -103,12 +102,11 @@ public:
     int removeDuplicates(vector<int> &nums)
     {
         int n = nums.size();
-        if (n <= 1) return n;
-
-        int slow = 0;
+        int slow = 0, len = 0;
         for (int fast = 0; fast < n; fast++)
         {
-            if (nums[fast] != nums[slow]){
+            if (nums[slow] != nums[fast] && slow <= fast)
+            {
                 slow++;
                 nums[slow] = nums[fast];
             }
@@ -121,16 +119,18 @@ public:
 int main()
 {
     Solution solution;
-    vector<int> nums = {0,0,1,1,1,2,2,3,3,4};
+    vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
     cout << "Original array: ";
-    for (int num : nums) {
+    for (int num : nums)
+    {
         cout << num << " ";
     }
     cout << endl;
 
     int newLength = solution.removeDuplicates(nums);
     cout << "Array after removing duplicates: ";
-    for (int i = 0; i < newLength; i++) {
+    for (int i = 0; i < newLength; i++)
+    {
         cout << nums[i] << " ";
     }
     cout << endl;

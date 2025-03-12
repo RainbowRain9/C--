@@ -26,17 +26,17 @@
 
 ## §3 数组双指针技巧
 - [26. 删除有序数组中的重复项](./../All/26-remove-duplicates-from-sorted-array.cpp) 🟢
-- [83. 删除排序链表中的重复元素](./../All/83-remove-duplicates-from-sorted-list.cpp) 🟢
-- [27. 移除元素](./../All/27-remove-element.cpp) 🟢❌
-- [283. 移动零](./../All/283-move-zeroes.cpp) 🟢❌
-- [167. 两数之和 II - 输入有序数组](./../All/167-two-sum-ii-input-array-is-sorted.cpp) 🟠❌
-- [344. 反转字符串](./../All/344-reverse-string.cpp) 🟢❌
-- [5. 最长回文子串](./../All/5-longest-palindromic-substring.cpp) 🟠❌
-- [80. 删除有序数组中的重复项 II](./../All/80-remove-duplicates-from-sorted-array-ii.cpp) 🟠❌
-- [125. 验证回文串](./../All/125-valid-palindrome.cpp) 🟢❌
-- [75. 颜色分类](./../All/75-sort-colors.cpp) 🟠❌
-- [88. 合并两个有序数组](./../All/88-merge-sorted-array.cpp) 🟢❌
-- [977. 有序数组的平方](./../All/977-squares-of-a-sorted-array.cpp) 🟢❌
+- [83. 删除排序链表中的重复元素](./../All/83-remove-duplicates-from-sorted-list.cpp) ❌
+- [27. 移除元素](./../All/27-remove-element.cpp) 🟢
+- [283. 移动零](./../All/283-move-zeroes.cpp) 🟢
+- [167. 两数之和 II - 输入有序数组](./../All/167-two-sum-ii-input-array-is-sorted.cpp) 🟠
+- [344. 反转字符串](./../All/344-reverse-string.cpp) 🟢
+- [5. 最长回文子串](./../All/5-longest-palindromic-substring.cpp) 🟠
+- [80. 删除有序数组中的重复项 II](./../All/80-remove-duplicates-from-sorted-array-ii.cpp) 🟠
+- [125. 验证回文串](./../All/125-valid-palindrome.cpp) 🟢
+- [75. 颜色分类](./../All/75-sort-colors.cpp) 🟠
+- [88. 合并两个有序数组](./../All/88-merge-sorted-array.cpp) 🟢
+- [977. 有序数组的平方](./../All/977-squares-of-a-sorted-array.cpp) 🟢
 
 ## §4 二维数组操作技巧
 - [151. 反转字符串中的单词](./../All/151-reverse-words-in-a-string.cpp) 🟠❌
@@ -60,7 +60,7 @@
 - [209. 长度最小的子数组](./../All/209-minimum-size-subarray-sum.cpp) 🟠
 
 ## §6 二分搜索算法
-- [704. 二分查找](./../All/704-binary-search.cpp) 🟢❌
+- [704. 二分查找](./../All/704-binary-search.cpp) 🟢❌****
 - [34. 在排序数组中查找元素的第一个和最后一个位置](./../All/34-find-first-and-last-position-of-element-in-sorted-array.cpp) 🟠❌
 - [875. 爱吃香蕉的珂珂](./../All/875-koko-eating-bananas.cpp) 🟠❌
 - [1011. 在 D 天内送达包裹的能力](./../All/1011-capacity-to-ship-packages-within-d-days.cpp) 🟠❌
