@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-12 17:09:00
- * @LastEditTime: 2025-03-12 17:25:44
+ * @LastEditTime: 2025-03-13 20:08:45
  * @FilePath: \C++\Algorithm\LeetCode\All\88-merge-sorted-array.cpp
  * @Description:
  */
@@ -91,61 +91,35 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-12: 
 // @lc code=start
 class Solution
 {
 public:
     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
     {
-        // 初始化指针：
-        // p1 指向 nums1 有效范围的最后一个元素
-        // p2 指向 nums2 的最后一个元素
-        // p 指向合并后数组的最后一个位置
         int p1 = m - 1;
         int p2 = n - 1;
         int p = m + n - 1;
-
-        // 创建一个临时数组来存储合并结果
-        vector<int> nums(p + 1);
-
-        // 当两个数组都还有元素时进行合并
         while (p >= 0 && p1 >= 0 && p2 >= 0)
         {
-            // 从两个数组的末尾开始比较元素
             if (nums1[p1] > nums2[p2])
             {
-                // 如果 nums1 的元素更大，将其放入合并后的数组
-                nums[p] = nums1[p1];
-                p1--; // 移动到 nums1 的前一个元素
+                nums1[p] = nums1[p1--];
             }
             else
             {
-                // 如果 nums2 的元素更大或相等，将其放入合并后的数组
-                nums[p] = nums2[p2];
-                p2--; // 移动到 nums2 的前一个元素
+                nums1[p] = nums2[p2--];
             }
-            p--; // 移动到合并数组的前一个位置
+            p--;
         }
-
-        // 如果 nums1 还有剩余元素，直接复制
         while (p1 >= 0)
         {
-            nums[p] = nums1[p1];
-            p--;
-            p1--;
+            nums1[p--] = nums1[p1--];
         }
-
-        // 如果 nums2 还有剩余元素，直接复制
         while (p2 >= 0)
         {
-            nums[p] = nums2[p2];
-            p--;
-            p2--;
+            nums1[p--] = nums2[p2--];
         }
-
-        // 将合并结果赋值回 nums1
-        nums1 = nums;
     }
 };
 // @lc code=end

@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-12 14:54:58
- * @LastEditTime: 2025-03-12 14:57:48
+ * @LastEditTime: 2025-03-13 19:54:46
  * @FilePath: \C++\Algorithm\LeetCode\All\75-sort-colors.cpp
  * @Description:
  */
@@ -82,7 +82,7 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-12: 
+// TODO 2025-03-12: 75.颜色分类
 // @lc code=start
 class Solution
 {
@@ -91,18 +91,17 @@ public:
     {
         int n = nums.size();
         int left = 0, right = n - 1;
-        int curr = 0;
-        while (curr <= right)
+        for (int curr = 0; curr <= right;)
         {
             if (nums[curr] == 0)
             {
-                swap(nums[curr], nums[left]);
+                swap(nums[left], nums[curr]);
                 left++;
                 curr++;
             }
             else if (nums[curr] == 2)
             {
-                swap(nums[curr], nums[right]);
+                swap(nums[right], nums[curr]);
                 right--;
             }
             else
@@ -158,7 +157,12 @@ public:
 int main()
 {
     Solution solution;
-    // your test code here
+    vector<int> nums = {1,0,2};
+    solution.sortColors(nums);
+    for(int num : nums) {
+        cout << num << " ";
+    }
+    cout << endl;
 }
 
 /*

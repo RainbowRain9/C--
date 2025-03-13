@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-09 21:11:45
- * @LastEditTime: 2025-03-09 21:37:57
+ * @LastEditTime: 2025-03-13 20:14:16
  * @FilePath: \C++\Algorithm\LeetCode\All\977-squares-of-a-sorted-array.cpp
  * @Description: 
  */
@@ -79,7 +79,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-12: 
 // @lc code=start
 class Solution
 {

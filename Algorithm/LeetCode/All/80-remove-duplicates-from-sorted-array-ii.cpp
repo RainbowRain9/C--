@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-11 22:46:49
- * @LastEditTime: 2025-03-12 13:14:20
+ * @LastEditTime: 2025-03-13 20:03:29
  * @FilePath: \C++\Algorithm\LeetCode\All\80-remove-duplicates-from-sorted-array-ii.cpp
  * @Description:
  */
@@ -91,14 +91,14 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-12:
 // @lc code=start
 class Solution
 {
 public:
     int removeDuplicates(vector<int> &nums)
     {
-        if (nums.size() <= 2) return nums.size();
+        if (nums.size() <= 2)
+            return nums.size();
         int slow = 2;
         for (int fast = 2; fast < nums.size(); fast++)
         {

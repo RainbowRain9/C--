@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-12 13:37:22
- * @LastEditTime: 2025-03-12 13:40:48
+ * @LastEditTime: 2025-03-13 19:43:59
  * @FilePath: \C++\Algorithm\LeetCode\All\125-valid-palindrome.cpp
  * @Description:
  */
@@ -78,7 +78,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
-// TODO 2025-03-12: 
 using namespace std;
 
 // @lc code=start
@@ -87,24 +86,26 @@ class Solution
 public:
     bool isPalindrome(string s)
     {
-        string v;
-        for (auto c : s)
+        string c;
+        for (auto v : s)
         {
-            if (isalnum(c))
+            if (isalnum(v))
             {
-                v += tolower(c);
+                c.push_back(tolower(v));
             }
         }
-        int n = v.size();
-        int left = 0, right = n - 1;
-        while (left < right)
+        int left = 0, right = c.size() - 1;
+        while (left <= right)
         {
-            if (v[left] != v[right])
+            if (c[left] != c[right])
             {
                 return false;
             }
-            left++;
-            right--;
+            else
+            {
+                left++;
+                right--;
+            }
         }
         return true;
     }
@@ -114,7 +115,14 @@ public:
 int main()
 {
     Solution solution;
-    // your test code here
+    string test1 = "A man, a plan, a canal: Panama";
+    cout << "Test 1: " << solution.isPalindrome(test1) << endl;
+    
+    string test2 = "race a car"; 
+    cout << "Test 2: " << solution.isPalindrome(test2) << endl;
+    
+    string test3 = " ";
+    cout << "Test 3: " << solution.isPalindrome(test3) << endl;
 }
 
 /*
