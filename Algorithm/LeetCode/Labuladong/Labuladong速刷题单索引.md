@@ -62,8 +62,8 @@
 ## §6 二分搜索算法
 - [704. 二分查找](./../All/704-binary-search.cpp) 🟢
 - [34. 在排序数组中查找元素的第一个和最后一个位置](./../All/34-find-first-and-last-position-of-element-in-sorted-array.cpp) 🟠
-- [875. 爱吃香蕉的珂珂](./../All/875-koko-eating-bananas.cpp) 🟠❌
-- [1011. 在 D 天内送达包裹的能力](./../All/1011-capacity-to-ship-packages-within-d-days.cpp) 🟠❌
+- [875. 爱吃香蕉的珂珂](./../All/875-koko-eating-bananas.cpp) 🟠
+- [1011. 在 D 天内送达包裹的能力](./../All/1011-capacity-to-ship-packages-within-d-days.cpp) 🟠
 - [410. 分割数组的最大值](./../All/410-split-array-largest-sum.cpp) 🔴❌
 
 ## §7 前缀和/差分技巧

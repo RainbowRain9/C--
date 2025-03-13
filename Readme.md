@@ -145,6 +145,40 @@ bool isPrime(int j)
 - 允许直接通过其键值为快速访问单个元素（所以也不不是你输入的顺序，别想太多…）
 - `multimap` 是可重复的map，因为元素可重复，所以一般用迭代器遍历
 
+### `ranges` 库
+
+- 头文件 `#include <ranges>`
+- 提供了更现代的方式处理序列和算法
+- 主要优点:
+  1. 不需要写begin()/end()
+  2. 更安全的边界检查
+  3. 更直观的语法
+
+```cpp
+vector<int> nums = {1, 2, 3, 4, 5};
+
+// 传统写法
+sort(nums.begin(), nums.end());
+
+// ranges写法
+ranges::sort(nums);
+
+// 过滤操作
+auto even = nums | views::filter([](int n) { 
+    return n % 2 == 0; 
+});
+
+// 转换操作
+auto doubled = nums | views::transform([](int n) { 
+    return n * 2; 
+});
+
+// 组合多个操作
+auto result = nums 
+    | views::filter([](int n) { return n % 2 == 0; })
+    | views::transform([](int n) { return n * 2; });
+```
+
 ### `algorithm` 库
 
 - 在 `#include <algorithm>` 头文件里，有 `reverse` 函数， `reverse(s.begin(), s.end());` ， `reverse` 是直接改变字符串本身的，并没有返回值，不能 `reverse` 之后赋值给一个字符串，所以 `string t = reverse(s.begin(), s.end());` 这样是不对的～
