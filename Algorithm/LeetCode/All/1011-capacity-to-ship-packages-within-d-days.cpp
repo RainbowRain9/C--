@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-13 23:00:00
- * @LastEditTime: 2025-03-13 23:32:37
+ * @LastEditTime: 2025-03-15 16:49:10
  * @FilePath: \C++\Algorithm\LeetCode\All\1011-capacity-to-ship-packages-within-d-days.cpp
  * @Description:
  */
@@ -97,29 +97,26 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-13: 
+// TODO 2025-03-13:
 // @lc code=start
 class Solution
 {
 public:
     int shipWithinDays(vector<int> &weights, int days)
     {
-        int total = 0;
-        int maxWeight = 0;
-        for (int weight : weights)
+        int total = 0, maxWeight = 0;
+        for (auto weight : weights)
         {
             total += weight;
             maxWeight = max(maxWeight, weight);
         }
-
-        int left = maxWeight, right = total; 
-
+        int left = maxWeight, right = total;
+        int day = 1, temp;
         while (left <= right)
         {
             int mid = left + (right - left) / 2;
-            int temp = mid;
-            int day = 1;
-            for (int weight : weights)
+            temp = mid;
+            for (auto weight : weights)
             {
                 if (temp < weight)
                 {

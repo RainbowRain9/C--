@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-13 20:15:20
- * @LastEditTime: 2025-03-13 22:14:21
+ * @LastEditTime: 2025-03-14 19:54:15
  * @FilePath: \C++\Algorithm\LeetCode\All\34-find-first-and-last-position-of-element-in-sorted-array.cpp
  * @Description:
  */
@@ -73,7 +73,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
-// TODO 2025-03-13: 
 using namespace std;
 
 // @lc code=start
@@ -83,9 +82,6 @@ public:
     vector<int> searchRange(vector<int> &nums, int target)
     {
         int n = nums.size();
-        if (n == 0)
-            return {-1, -1};
-
         int left = 0, right = n - 1;
         int first = -1;
         while (left <= right)
@@ -109,15 +105,14 @@ public:
         {
             return {-1, -1};
         }
-        left = first;
-        right = n - 1;
-        int last = first;
+        left = first, right = n - 1;
+        int second = -1;
         while (left <= right)
         {
             int mid = left + (right - left) / 2;
             if (nums[mid] == target)
             {
-                last = mid;
+                second = mid;
                 left = mid + 1;
             }
             else if (nums[mid] < target)
@@ -129,7 +124,7 @@ public:
                 right = mid - 1;
             }
         }
-        return {first, last};
+        return {first, second};
     }
 };
 // @lc code=end

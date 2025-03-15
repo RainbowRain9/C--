@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-13 14:52:15
- * @LastEditTime: 2025-03-13 19:47:43
+ * @LastEditTime: 2025-03-14 22:43:32
  * @FilePath: \C++\Algorithm\LeetCode\All\704-binary-search.cpp
  * @Description:
  */
@@ -69,33 +69,43 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-13:
 // @lc code=start
 class Solution
 {
 public:
-    int search(vector<int> &nums, int target)
+    int search(vector<int> &nums, int target) // 方法1：使用ranges::lower_bound
     {
+        // 获取数组大小
         int n = nums.size();
-        int left = 0, right = n - 1;
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target)
-            {
-                return mid;
-            }
-            else if (nums[mid] < target)
-            {
-                left = mid + 1;
-            }
-            else
-            {
-                right = mid - 1;
-            }
-        }
-        return -1;
+        // 使用lower_bound找到第一个大于等于target的位置
+        auto it = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+        // 如果找到的位置有效且等于target则返回下标，否则返回-1
+        return it < nums.size() && nums[it] == target ? it : -1;
     }
+    // int search(vector<int> &nums, int target) // 方法2：使用二分查找
+    // {
+    //     // 初始化左右边界
+    //     int left = 0, right = nums.size() - 1;
+    //     // 当左边界小于等于右边界时继续查找
+    //     while (left <= right) {
+    //         // 计算中间位置，避免溢出
+    //         int mid = left + (right - left) / 2;
+    //         // 如果找到目标值，返回下标
+    //         if (nums[mid] == target) {
+    //             return mid;
+    //         }
+    //         // 如果中间值小于目标值，在右半部分继续查找
+    //         else if (nums[mid] < target) {
+    //             left = mid + 1;
+    //         }
+    //         // 如果中间值大于目标值，在左半部分继续查找
+    //         else {
+    //             right = mid - 1;
+    //         }
+    //     }
+    //     // 未找到目标值，返回-1
+    //     return -1;
+    // }
 };
 // @lc code=end
 

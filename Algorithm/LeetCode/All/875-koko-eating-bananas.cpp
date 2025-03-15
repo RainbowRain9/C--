@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-13 22:14:00
- * @LastEditTime: 2025-03-13 22:58:37
+ * @LastEditTime: 2025-03-15 16:25:18
  * @FilePath: \C++\Algorithm\LeetCode\All\875-koko-eating-bananas.cpp
  * @Description:
  */
@@ -83,39 +83,42 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-13: 
+// TODO 2025-03-13:
 // @lc code=start
 class Solution
 {
 public:
     int minEatingSpeed(vector<int> &piles, int h)
     {
-        // piles[i] / k + 1 = h[i];
+        // 找到最大香蕉堆，作为二分查找的上界
         int maxPile = 0;
         for (int pile : piles)
         {
             maxPile = max(maxPile, pile);
         }
+        // 特殊情况处理
         if (h == piles.size())
             return maxPile;
+
+        // 二分查找
         int left = 1, right = maxPile;
-        int total = 0;
         while (left <= right)
         {
             int mid = left + (right - left) / 2;
-            total = 0;
+            // 计算以当前速度吃完所有香蕉需要的时间
+            int total = 0;
             for (int pile : piles)
             {
-                total += (pile + mid - 1) / mid; //为什么(向上取整)
-                // 可以 total += pile / mid + 1吗？(整除时会多加一次)
+                total += (pile + mid - 1) / mid; // 向上取整
             }
-            if (total <= h) // 怎么理解？
+
+            if (total <= h)
             {
-                right = mid - 1; // 和正常二分不一样
+                right = mid - 1; // 尝试更小的速度
             }
             else
             {
-                left = mid + 1;
+                left = mid + 1; // 需要更大的速度
             }
         }
         return left;
