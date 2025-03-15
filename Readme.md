@@ -1272,6 +1272,67 @@ a / b;  // C++整数除法自动向下取整
 
 ```
 
+### 求数组最大值
+
+#### 使用max_element
+
+- 要点
+  - 需要包含头文件 `<algorithm>`
+  - 返回指向最大元素的迭代器
+  - 可以用于数组、vector等容器
+
+- 模板
+
+```cpp
+// 方法1：直接获取最大值
+int maxVal = *max_element(nums.begin(), nums.end());
+
+// 方法2：使用迭代器差值获取最大值位置
+int maxIndex = max_element(nums.begin(), nums.end()) - nums.begin();
+
+// 方法3：使用自定义比较函数
+int maxVal = *max_element(nums.begin(), nums.end(), 
+    [](int a, int b) { return a < b; });
+```
+
+#### 其他方法
+
+1. 使用for循环遍历
+```cpp
+int getMax(vector<int>& nums) {
+    int maxVal = nums[0];  // 初始化为第一个元素
+    for(int num : nums) {
+        maxVal = max(maxVal, num);
+    }
+    return maxVal;
+}
+```
+
+2. 使用accumulate配合lambda表达式
+```cpp
+#include <numeric>
+int maxVal = accumulate(nums.begin(), nums.end(), nums[0], 
+    [](int a, int b) { return max(a, b); });
+```
+
+3. 使用reduce (C++17及以上)
+```cpp
+#include <numeric>
+int maxVal = reduce(nums.begin(), nums.end(), nums[0], 
+    [](int a, int b) { return max(a, b); });
+```
+
+- 性能比较
+  - `*max_element`和基于索引的遍历性能最好
+  - accumulate和reduce略慢一些
+  - lambda表达式可能带来轻微的性能开销
+
+- 使用建议
+  1. 一般情况下使用`*max_element`，简洁且高效
+  2. 需要自定义比较逻辑时，使用max_element配合比较函数
+  3. 需要同时进行其他操作时，可以考虑使用循环遍历
+  4. 在现代C++中，也可以考虑使用更简洁的reduce方法
+
 ### 前缀和
 
 - 前缀和是一种预处理技术，用于快速计算数组中一段区间的元素和。

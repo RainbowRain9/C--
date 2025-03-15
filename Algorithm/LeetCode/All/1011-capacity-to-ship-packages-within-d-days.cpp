@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-13 23:00:00
- * @LastEditTime: 2025-03-15 16:49:10
+ * @LastEditTime: 2025-03-15 17:08:51
  * @FilePath: \C++\Algorithm\LeetCode\All\1011-capacity-to-ship-packages-within-d-days.cpp
  * @Description:
  */
@@ -97,7 +97,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-13:
 // @lc code=start
 class Solution
 {
@@ -111,21 +110,31 @@ public:
             maxWeight = max(maxWeight, weight);
         }
         int left = maxWeight, right = total;
-        int day = 1, temp;
         while (left <= right)
         {
             int mid = left + (right - left) / 2;
-            temp = mid;
+            // 检查当前运载能力是否可行
+            int currentDay = 1;
+            int currentLoad = 0;
+            // 遍历所有包裹重量
             for (auto weight : weights)
             {
-                if (temp < weight)
+                // 如果当前载重加上新包裹超过运载能力限制
+                if (currentLoad + weight > mid)
                 {
-                    day++;
-                    temp = mid;
+                    // 需要新的一天来运送
+                    currentDay++;
+                    // 新一天的载重从当前包裹开始
+                    currentLoad = weight;
                 }
-                temp -= weight;
+                else
+                {
+                    // 当前这天可以继续装载这个包裹
+                    currentLoad += weight;
+                }
             }
-            if (day <= days)
+            // 根据所需天数调整搜索范围
+            if (currentDay <= days)
             {
                 right = mid - 1;
             }

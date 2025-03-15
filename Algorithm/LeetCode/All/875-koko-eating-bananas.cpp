@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-13 22:14:00
- * @LastEditTime: 2025-03-15 16:25:18
+ * @LastEditTime: 2025-03-15 17:09:05
  * @FilePath: \C++\Algorithm\LeetCode\All\875-koko-eating-bananas.cpp
  * @Description:
  */
@@ -83,7 +83,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-13:
 // @lc code=start
 class Solution
 {
