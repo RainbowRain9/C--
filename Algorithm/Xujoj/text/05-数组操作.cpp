@@ -1,10 +1,3 @@
-/*
- * @Author: RainbowRain9
- * @Date: 2024-11-26 22:56:38
- * @LastEditTime: 2025-03-16 16:38:33
- * @FilePath: \C++\try.cpp
- * @Description:
- */
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -27,28 +20,51 @@ using namespace std;
 int main()
 {
     int n, m;
-    int n = 5, m = 7;
+    cin >> n >> m;
     vector<int> a(n);
-    a = {1, 2, 3, 4, 5};
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    bool r;
 
     for (int i = 0; i < m; i++)
     {
         int t;
+        cin >> t;
         if (t == 1)
         {
             int k;
             cin >> k;
-            cout << a[k - 1] << endl;
+            int index;
+            if (r)
+            {
+                index = n - k;
+            }
+            else
+            {
+                index = k - 1;
+            }
+            cout << a[index] << endl;
         }
         else if (t == 2)
         {
             int k, x;
             cin >> k >> x;
-            a[k] = x;
+            int index;
+            if (r)
+            {
+                index = n - k;
+            }
+            else
+            {
+                index = k - 1;
+            }
+            a[index] = x;
         }
         else if (t == 3)
         {
-            reverse(a.begin(), a.end());
+            r = !r;
         }
     }
 
