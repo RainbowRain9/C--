@@ -1,56 +1,8 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2024-11-26 22:56:38
- * @LastEditTime: 2025-03-16 16:38:33
+ * @LastEditTime: 2025-03-21 16:17:34
  * @FilePath: \C++\try.cpp
- * @Description:
+ * @Description: 
  */
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <deque>
-#include <functional>
-#include <iostream>
-#include <list>
-#include <queue>
-#include <stack>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-#include <string>
-#include <cmath>
-using namespace std;
 
-int main()
-{
-    int n, m;
-    int n = 5, m = 7;
-    vector<int> a(n);
-    a = {1, 2, 3, 4, 5};
-
-    for (int i = 0; i < m; i++)
-    {
-        int t;
-        if (t == 1)
-        {
-            int k;
-            cin >> k;
-            cout << a[k - 1] << endl;
-        }
-        else if (t == 2)
-        {
-            int k, x;
-            cin >> k >> x;
-            a[k] = x;
-        }
-        else if (t == 3)
-        {
-            reverse(a.begin(), a.end());
-        }
-    }
-
-    return 0;
-}

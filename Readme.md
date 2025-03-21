@@ -1353,6 +1353,70 @@ int query(int left, int right) {
 
 ```
 
+### Lambda表达式
+
+#### 语法结构
+```cpp
+[capture](parameters) -> return_type { body }
+```
+
+- `[capture]`: 捕获列表
+- `(parameters)`: 参数列表(可选)
+- `-> return_type`: 返回类型(可选)
+- `{ body }`: 函数体
+
+#### 捕获列表
+```cpp
+// 1. 空捕获列表
+[]() { /* ... */ }
+
+// 2. 值捕获
+[x]() { return x + 1; }
+
+// 3. 引用捕获
+[&x]() { x += 1; }
+
+// 4. 隐式值捕获所有变量
+[=]() { /* ... */ }
+
+// 5. 隐式引用捕获所有变量
+[&]() { /* ... */ }
+
+// 6. 混合捕获
+[x, &y]() { /* ... */ }
+
+// 7. 默认值捕获+引用捕获
+[=, &x]() { /* ... */ }
+```
+
+#### 使用示例
+```cpp
+// 基本用法
+auto lambda = []() { cout << "Hello Lambda!" << endl; };
+lambda(); // 调用lambda函数
+
+// 作为算法的谓词
+vector<int> nums = {1, 2, 3, 4, 5};
+sort(nums.begin(), nums.end(), 
+    [](int a, int b) { return a > b; });
+
+// 作为回调函数
+button.setClickHandler([]() {
+    cout << "Button clicked!" << endl;
+});
+
+// 泛型Lambda(C++14)
+auto add = [](auto x, auto y) { return x + y; };
+```
+
+#### 注意事项
+1. 捕获列表的选择要注意性能
+2. 避免捕获过多变量
+3. 注意变量的生命周期
+4. 合理使用返回值类型推导
+
+
+
 ### 滑动窗口
 
 #### 1. 定长滑动窗口

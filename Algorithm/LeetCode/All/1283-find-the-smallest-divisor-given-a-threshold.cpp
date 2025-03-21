@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-15 19:23:13
- * @LastEditTime: 2025-03-15 20:59:53
+ * @LastEditTime: 2025-03-17 20:45:40
  * @FilePath: \C++\Algorithm\LeetCode\All\1283-find-the-smallest-divisor-given-a-threshold.cpp
  * @Description:
  */
@@ -81,7 +81,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-15:
 // @lc code=start
 class Solution
 {

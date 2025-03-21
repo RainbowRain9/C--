@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-15 20:51:08
- * @LastEditTime: 2025-03-15 21:15:10
+ * @LastEditTime: 2025-03-17 20:49:00
  * @FilePath: \C++\Algorithm\LeetCode\All\2187-minimum-time-to-complete-trips.cpp
  * @Description:
  */
@@ -83,7 +83,6 @@
 #include <utility>
 
 using namespace std;
-// TODO 2025-03-15: 
 // @lc code=start
 class Solution
 {
