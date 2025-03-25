@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-10 23:23:08
- * @LastEditTime: 2025-03-12 13:33:31
+ * @LastEditTime: 2025-03-25 22:13:50
  * @FilePath: \C++\Algorithm\LeetCode\All\83-remove-duplicates-from-sorted-list.cpp
  * @Description:
  */
@@ -66,38 +66,31 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
-// TODO 2025-03-11: 83.删除排序链表中的重复元素
 using namespace std;
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
 // @lc code=start
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+
 class Solution
 {
 public:
     ListNode *deleteDuplicates(ListNode *head)
     {
-        if (!head || !head->next)
-        {
+        if (!head)
             return head;
-        }
-
         ListNode *cur = head;
-        while (cur && cur->next)
+        while (cur->next)
         {
-            if (cur->val == cur->next->val)
+            if (cur->next->val == cur->val)
             {
-                ListNode *temp = cur->next;
                 cur->next = cur->next->next;
-                delete temp;
             }
             else
             {
@@ -112,7 +105,30 @@ public:
 int main()
 {
     Solution solution;
-    // your test code here
+    
+    // Test case 1: [1,1,2]
+    ListNode* node1 = new ListNode(1);
+    node1->next = new ListNode(1);
+    node1->next->next = new ListNode(2);
+    ListNode* result1 = solution.deleteDuplicates(node1);
+    while (result1) {
+        cout << result1->val << " ";
+        result1 = result1->next;
+    }
+    cout << endl;
+    
+    // Test case 2: [1,1,2,3,3]
+    ListNode* node2 = new ListNode(1);
+    node2->next = new ListNode(1);
+    node2->next->next = new ListNode(2);
+    node2->next->next->next = new ListNode(3);
+    node2->next->next->next->next = new ListNode(3);
+    ListNode* result2 = solution.deleteDuplicates(node2);
+    while (result2) {
+        cout << result2->val << " ";
+        result2 = result2->next;
+    }
+    cout << endl;
 }
 
 /*

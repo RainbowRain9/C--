@@ -5,7 +5,3 @@
  * @FilePath: \C++\Todo.md
  * @Description: 
 -->
-Python/Java/C++/Go 等语言代码：
-
-课后作业：
-2816. 翻倍以链表形式表示的数字 https://leetcode.cn/problems/double-a-number-represented-as-a-linked-list/
