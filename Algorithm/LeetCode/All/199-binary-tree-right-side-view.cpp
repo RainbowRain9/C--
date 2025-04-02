@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-03-31 20:56:57
- * @LastEditTime: 2025-03-31 21:06:08
+ * @LastEditTime: 2025-03-31 21:11:24
  * @FilePath: \C++\Algorithm\LeetCode\All\199-binary-tree-right-side-view.cpp
  * @Description:
  */
@@ -92,7 +92,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
-
+// TODO 2025-03-31: 
 using namespace std;
 struct TreeNode
 {
@@ -131,7 +131,17 @@ public:
 int main()
 {
     Solution solution;
-    // your test code here
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->left->right = new TreeNode(5);
+    root->right->right = new TreeNode(4);
+    
+    vector<int> result = solution.rightSideView(root);
+    for (int val : result) {
+        cout << val << " ";
+    }
+    cout << endl;
 }
 
 /*
