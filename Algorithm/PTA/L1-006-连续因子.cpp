@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-04-01 23:05:18
- * @LastEditTime: 2025-04-02 15:31:39
+ * @LastEditTime: 2025-04-02 16:36:39
  * @FilePath: \C++\Algorithm\PTA\L1-006-连续因子.cpp
  * @Description: https://pintia.cn/problem-sets/994805046380707840/exam/problems/type/7?problemSetProblemId=994805138600869888&page=0
  */
@@ -40,7 +40,7 @@
 #include <string>
 #include <cmath>
 using namespace std;
-
+// TODO 2025-04-02: 
 bool isPrime(int n)
 {
     if (n < 2)
@@ -59,6 +59,9 @@ bool isPrime(int n)
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
     int n;
     cin >> n;
 
@@ -71,19 +74,19 @@ int main()
     int maxLen = 0;
     int first = 0;
     int sqrtn = sqrt(n);
-    
+
     int maxStart = min(sqrtn, 100);
-    
+
     for (int i = 2; i <= maxStart; i++)
     {
         long long product = 1;
-        
+
         for (int j = 0, cur = i; j < 20 && cur <= sqrtn + 1; j++, cur++)
         {
             product *= cur;
             if (product > n || product <= 0)
                 break;
-            
+
             if (n % product == 0)
             {
                 int curLen = j + 1;
@@ -95,7 +98,7 @@ int main()
             }
         }
     }
-    
+
     if (maxLen == 0)
     {
         cout << 1 << endl

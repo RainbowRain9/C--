@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-04-02 15:47:33
- * @LastEditTime: 2025-04-02 16:04:20
+ * @LastEditTime: 2025-04-02 16:39:20
  * @FilePath: \C++\Algorithm\PTA\L1-008-求整数段和.cpp
  * @Description: https://pintia.cn/problem-sets/994805046380707840/exam/problems/type/7?problemSetProblemId=994805135224455168&page=0
  */
@@ -48,7 +48,7 @@
 #include <string>
 #include <cmath>
 using namespace std;
-
+// TODO 2025-04-02: 
 int main()
 {
     int a, b;
@@ -60,7 +60,7 @@ int main()
         printf("%5d", i);
         sum += i;
         cnt++;
-        if (cnt % 5 == 0 || i == b)
+        if (cnt % 5 == 0 || i == 2)
         {
             printf("\n");
         }

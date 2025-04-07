@@ -1,5 +1,4 @@
 {
-    "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
@@ -159,5 +158,28 @@
     "todo-tree.highlights.useColourScheme": true,
     "todo-tree.tree.hideIconsWhenGroupedByTag": false,
     "todo-tree.tree.groupedByTag": false,
-    "todo-tree.tree.groupedBySubTag": false
+    "todo-tree.tree.groupedBySubTag": false,
+    "clangd.arguments": [
+        "--query-driver=D:\\MinGW\\mingw32\\bin\\g++.exe", // 替换为你的 g++ 路径
+        "--background-index",
+        "--compile-commands-dir=build", //compile_command.json相对路径，cmake默认生成在build，自行配置
+        "-j=12",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
+        "--header-insertion=iwyu",
+        "--pch-storage=memory",
+        "--cross-file-rename",
+        "--enable-config",
+        "--fallback-style=WebKit",
+        "--pretty",
+        "--clang-tidy",
+    ],
+    "clangd.checkUpdates": false,
+    "clangd.onConfigChanged": "ignore",
+    "clangd.fallbackFlags": [
+        "-std=c++17"
+    ],
+    "clangd.diagnostics": {
+        "enabled": false
+    }
 }

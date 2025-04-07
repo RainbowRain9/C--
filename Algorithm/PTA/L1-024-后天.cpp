@@ -1,8 +1,8 @@
 /*
  * @Author: RainbowRain9
- * @Date: 2024-11-26 22:56:38
- * @LastEditTime: 2025-04-07 13:25:29
- * @FilePath: \C++\try.cpp
+ * @Date: 2025-04-04 20:31:17
+ * @LastEditTime: 2025-04-06 22:07:22
+ * @FilePath: \C++\Algorithm\PTA\L1-024-后天.cpp
  * @Description:
  */
 /**************************************************
@@ -33,7 +33,6 @@
 #include <deque>
 #include <functional>
 #include <iostream>
-#include <iterator>
 #include <list>
 #include <queue>
 #include <stack>
@@ -43,19 +42,18 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
 using namespace std;
 
-int main()
-{
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-    sort(a.begin(), a.end());
-    for (int i = 0; i < n; i++) {
-        cout << a[i] << endl;
-    }
-    return 0;
+int main() {
+  int n;
+  cin >> n;
+  int result = (n + 2) % 7;
+
+  if (result == 0) {
+    result = 7;
+  }
+  cout << result;
+
+  return 0;
 }

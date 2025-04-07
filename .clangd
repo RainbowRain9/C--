@@ -1,0 +1,35 @@
+CompileFlags:
+  Add: 
+    - "-ID:/MinGW/mingw64/include/c++/14.2.0"
+    - "-ID:/MinGW/mingw64/include/c++/14.2.0/x86_64-w64-mingw32"
+    - "-ID:/MinGW/mingw64/include/c++/14.2.0/backward"
+    - "-ID:/MinGW/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include"
+    - "-ID:/MinGW/mingw64/include"
+    - "-ID:/MinGW/mingw64/x86_64-w64-mingw32/include"  # System headers
+    - "--target=x86_64-w64-mingw32"
+    - "-std=c++17"
+  Remove: 
+    - "-W*"
+    - "-std=*"
+
+Diagnostics:
+  Suppress: 
+    - "pp_including_mainfile_in_preamble"
+    - "fatal_too_many_errors"
+    - "invalid_token_after_toplevel_declarator"
+  ClangTidy:
+    Add: []
+    Remove: "*"
+  UnusedIncludes: None
+
+Index:
+  Background: Skip
+
+InlayHints:
+  Enabled: No
+
+Hover:
+  ShowAKA: No
+
+Completion:
+  AllScopes: No
