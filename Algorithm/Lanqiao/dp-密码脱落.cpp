@@ -1,7 +1,7 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2025-04-11 09:05:21
- * @LastEditTime: 2025-04-11 09:29:26
+ * @LastEditTime: 2025-04-11 10:40:52
  * @FilePath: \C++\Algorithm\Lanqiao\Dp\密码脱落.cpp
  * @Description:
  */
@@ -48,18 +48,17 @@ int main()
 
     int n = s.size();
     const int N = 1005;
-    vector<vector<int>> dp(N, vector<int>(N));
+    vector<vector<int>> dp(N, vector<int>(N, 0));
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            if (s[i] == s1[j]) {
+            if (s[i] == s[n - 1 - j]) {
                 dp[i + 1][j + 1] = dp[i][j] + 1;
             } else {
                 dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j]);
             }
         }
     }
-    int r = n - dp[n][n];
-    cout << r << "\n";
+    cout << n - dp[n][n] << "\n";
 
     return 0;
 }

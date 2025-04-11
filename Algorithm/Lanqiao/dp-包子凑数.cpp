@@ -32,42 +32,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-	int n;
-	cin >> n;
-	vector<int> a(n);
-	for(int& i : a){
-		cin >> i;
-	}
-	int g = __gcd(a[0], a[1]);
-	for(int i : a) {
-		g = __gcd(g, i);
-	}
-	if (g > 1){
-		cout << "INF\n";
-		return 0;
-	}
-	// cout << g << "\n";
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int& i : a) {
+        cin >> i;
+    }
+    int g = __gcd(a[0], a[1]);
+    for (int i : a) {
+        g = __gcd(g, i);
+    }
+    if (g > 1) {
+        cout << "INF\n";
+        return 0;
+    }
+    // cout << g << "\n";
 
-	const int maxn = 10005;
-	int cnt = 0;
-	vector<bool> dp(maxn);
-	dp[0] = true;
-	for (int i = 0; i < maxn; i++){
-		for (int j = 0; j < n; j++) {
-			if (i - a[j] >= 0 && dp[i - a[j]]){
-				dp[i] = true;
-				break;
-			}
-		}
-		if (!dp[i]) {
-			cnt++;
-		}
-	}
-	cout << cnt << "\n";
+    const int maxn = 10005;
+    int cnt = 0;
+    vector<bool> dp(maxn);
+    dp[0] = true;
+    for (int i = 0; i < maxn; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i - a[j] >= 0 && dp[i - a[j]]) {
+                dp[i] = true;
+                break;
+            }
+        }
+        if (!dp[i]) {
+            cnt++;
+        }
+    }
+    cout << cnt << "\n";
 
-	return 0;
+    return 0;
 }
