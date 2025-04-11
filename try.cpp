@@ -1,61 +1,24 @@
 /*
  * @Author: RainbowRain9
  * @Date: 2024-11-26 22:56:38
- * @LastEditTime: 2025-04-07 13:25:29
+ * @LastEditTime: 2025-04-10 21:33:51
  * @FilePath: \C++\try.cpp
- * @Description:
+ * @Description: 
  */
-/**************************************************
- * 题目描述：
- *
- *
- * 示例 1：
- *   输入：
- *   输出：
- *   解释：
- *
- * 示例 2：
- *   输入：
- *   输出：
- *   解释：
- *
- * 提示：
- *   -
- *   -
- *   -
- **************************************************/
+#include <bits/stdc++.h>
 
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <cmath>
-#include <deque>
-#include <functional>
-#include <iostream>
-#include <iterator>
-#include <list>
-#include <queue>
-#include <stack>
-#include <string>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
 using namespace std;
-
 int main()
 {
     int n;
     cin >> n;
     vector<int> a(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
+    for (int& i : a) {
+        cin >> i;
     }
-    sort(a.begin(), a.end());
-    for (int i = 0; i < n; i++) {
-        cout << a[i] << endl;
+    sort(a.rbegin(),a.rend());
+    for (int i : a) {
+        cout << i << (i == a.back() ? "" : " ");
     }
     return 0;
 }
