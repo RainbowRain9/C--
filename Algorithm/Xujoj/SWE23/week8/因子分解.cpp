@@ -5,25 +5,27 @@
 
 using namespace std;
 using ll = long long;
+int cnt = 0;
+
+void f(int n, int m)
+{
+    if (n == 1)
+        cnt++;
+    else {
+        for (int i = m; i <= n; i++) {
+            if (n % i == 0) {
+                f(n / i, i);
+            }
+        }
+    }
+}
 
 void rain()
 {
     int n;
     cin >> n;
-    vector<int> a(n);
-    for(int& i : a)
-    {
-        cin >> i;
-    }
-    sort(all(a));
-    do
-    {
-        for (int i : a)
-        {
-            cout << i << " ";
-        }
-        cout << endl;
-    } while (next_permutation(all(a)));
+    f(n, 2);
+    cout << cnt;
 }
 
 signed main()
@@ -32,9 +34,8 @@ signed main()
     cin.tie(0);
     cout.tie(0);
     int _ = 1;
-//    cin>> _;
-    while (_--)
-    {
+    // cin >> _;
+    while (_--) {
         rain();
     }
     return 0;

@@ -11,19 +11,20 @@ void rain()
     int n;
     cin >> n;
     vector<int> a(n);
-    for(int& i : a)
-    {
+    for (int& i : a) {
         cin >> i;
     }
-    sort(all(a));
-    do
-    {
-        for (int i : a)
-        {
-            cout << i << " ";
+    int sum = 0;
+    int max_a = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+        if (a[i] > max_a) {
+            max_a = a[i];
         }
-        cout << endl;
-    } while (next_permutation(all(a)));
+    }
+    int t = sum;
+    int max_t = 2 * max_a;
+    cout << max(t, max_t);
 }
 
 signed main()
@@ -32,9 +33,8 @@ signed main()
     cin.tie(0);
     cout.tie(0);
     int _ = 1;
-//    cin>> _;
-    while (_--)
-    {
+    // cin >> _;
+    while (_--) {
         rain();
     }
     return 0;
