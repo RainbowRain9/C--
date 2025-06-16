@@ -1,8 +1,26 @@
-# 忽略所有的.exe文件
+# 编译生成的可执行文件
 *.exe
+*.out
+*.o
+*.obj
 
-# 忽略所有的.bat文件
+# 批处理文件
 *.bat
 
-# 忽略vscode配置文件
-.vscode
+# IDE和编辑器配置文件
+.vscode/
+.vs/
+*.code-workspace
+
+# 临时文件
+*~
+*.tmp
+*.temp
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 调试文件
+*.dSYM/
+*.pdb
